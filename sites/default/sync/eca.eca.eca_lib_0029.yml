@@ -1,0 +1,106 @@
+uuid: e1af05e9-a45b-4e66-a221-eccd694d9eee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_role
+    - field.storage.user.field_role
+  module:
+    - eca_base
+    - eca_content
+    - eca_user
+_core:
+  default_config_hash: Rwe3kpnsBx4GMkR-0sZmGJVZPbYsLYeIoyI_Wa13lPQ
+id: eca_lib_0029
+modeller: bpmn_io
+label: 'Add role to inserted or updated user'
+version: v2
+weight: 0
+events:
+  Event_15fsmqd:
+    plugin: 'content_entity:presave'
+    label: 'Presave User'
+    configuration:
+      type: 'user _all'
+    successors:
+      -
+        id: Activity_1kz152s
+        condition: ''
+conditions:
+  Flow_1q84r8w:
+    plugin: eca_user_role
+    configuration:
+      account: '[saveduser]'
+      role: _eca_token
+      negate: true
+  Flow_14b3t2b:
+    plugin: eca_user_role
+    configuration:
+      negate: false
+      account: '[saveduser]'
+      role: _eca_token
+gateways: {  }
+actions:
+  Activity_1r7v54x:
+    plugin: eca_switch_account
+    label: 'Switch to user 1'
+    configuration:
+      user_id: '1'
+    successors:
+      -
+        id: Activity_0wn1igg
+        condition: Flow_1q84r8w
+      -
+        id: Activity_1ad4xtj
+        condition: Flow_14b3t2b
+  Activity_1kz152s:
+    plugin: eca_token_set_value
+    label: 'Load saved user entity'
+    configuration:
+      token_name: saveduser
+      token_value: '[user]'
+      use_yaml: false
+    successors:
+      -
+        id: Activity_0raovyb
+        condition: ''
+  Activity_1jrvkj9:
+    plugin: action_message_action
+    label: 'Print success message'
+    configuration:
+      replace_tokens: false
+      message: 'Succeeded !!!'
+    successors: {  }
+  Activity_0wn1igg:
+    plugin: eca_set_field_value
+    label: 'Add role to field'
+    configuration:
+      field_name: roles
+      field_value: '[eca_user_role_role]'
+      method: 'append:not_full'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: saveduser
+    successors:
+      -
+        id: Activity_1jrvkj9
+        condition: ''
+  Activity_1ad4xtj:
+    plugin: action_message_action
+    label: 'Print fail message'
+    configuration:
+      replace_tokens: false
+      message: 'User already has the role.'
+    successors: {  }
+  Activity_0raovyb:
+    plugin: eca_token_set_value
+    label: 'Set role token'
+    configuration:
+      token_name: eca_user_role_role
+      token_value: '[user:field_role:value]'
+      use_yaml: false
+    successors:
+      -
+        id: Activity_1r7v54x
+        condition: ''

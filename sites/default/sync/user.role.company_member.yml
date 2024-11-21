@@ -1,0 +1,10 @@
+uuid: ebe6d066-5c80-4e9d-9482-571aa44a386c
+langcode: en
+status: true
+dependencies: {  }
+id: company_member
+label: 'Company Member'
+weight: 5
+is_admin: null
+permissions:
+  - 'access user profiles'

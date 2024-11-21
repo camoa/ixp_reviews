@@ -1,0 +1,21 @@
+uuid: 8a23f378-c91b-4491-8a97-706d247c7535
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_start_date
+    - node.type.ixp_engagement
+  module:
+    - datetime
+id: node.ixp_engagement.field_start_date
+field_name: field_start_date
+entity_type: node
+bundle: ixp_engagement
+label: 'Start Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

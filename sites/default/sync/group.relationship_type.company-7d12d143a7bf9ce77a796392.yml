@@ -1,0 +1,17 @@
+uuid: fa185c4f-7dea-4a99-a588-b4faa8aee668
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.company
+    - node.type.ixp_engagement
+  module:
+    - gnode
+    - node
+id: company-7d12d143a7bf9ce77a796392
+group_type: company
+content_plugin: 'group_node:ixp_engagement'
+plugin_config:
+  group_cardinality: 1
+  entity_cardinality: 1
+  use_creation_wizard: false

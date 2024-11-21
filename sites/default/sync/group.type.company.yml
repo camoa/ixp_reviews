@@ -1,0 +1,12 @@
+uuid: eee4cf0d-a52d-4c70-99f3-4bc0e10062df
+langcode: en
+status: true
+dependencies: {  }
+id: company
+label: Company
+description: ''
+new_revision: true
+creator_membership: true
+creator_wizard: true
+creator_roles:
+  - company-admin

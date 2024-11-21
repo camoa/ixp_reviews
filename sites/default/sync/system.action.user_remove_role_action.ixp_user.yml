@@ -1,0 +1,14 @@
+uuid: f5d41aa3-47e0-4fa0-86b1-004853770e6a
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.ixp_user
+  module:
+    - user
+id: user_remove_role_action.ixp_user
+label: 'Remove the IXP User role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: ixp_user

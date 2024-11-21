@@ -1,0 +1,14 @@
+uuid: 0fe5aa89-70a1-4ef5-a5ed-747ae50f2e2c
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.company_admin
+  module:
+    - user
+id: user_remove_role_action.company_admin
+label: 'Remove the Company Admin role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: company_admin

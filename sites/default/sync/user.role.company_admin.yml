@@ -1,0 +1,30 @@
+uuid: e082e3c1-a9a3-4126-90e4-af250ded5d28
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.ixp_engagement
+  module:
+    - comment
+    - contact
+    - group
+    - node
+    - system
+id: company_admin
+label: 'Company Admin'
+weight: 4
+is_admin: null
+permissions:
+  - 'access comments'
+  - 'access content'
+  - 'access group overview'
+  - 'access site-wide contact form'
+  - 'access user contact forms'
+  - 'access user profiles'
+  - 'create company group'
+  - 'create ixp_engagement content'
+  - 'delete own ixp_engagement content'
+  - 'edit own comments'
+  - 'edit own ixp_engagement content'
+  - 'post comments'
+  - 'view own unpublished content'

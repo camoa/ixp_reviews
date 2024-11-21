@@ -1,0 +1,15 @@
+uuid: 41d4a433-7dd2-4c58-9c72-b18b45c81342
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.company
+    - user.role.anonymous
+id: company-anonymous
+label: Anonymous
+weight: -102
+admin: false
+scope: outsider
+global_role: anonymous
+group_type: company
+permissions: {  }

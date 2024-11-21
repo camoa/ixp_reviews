@@ -1,0 +1,36 @@
+uuid: 393150cc-3865-47b4-9cf4-832e1fb39db9
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.ixp_engagement.field_case_number
+    - field.field.node.ixp_engagement.field_drupal_issues
+    - field.field.node.ixp_engagement.field_estimated_hours
+    - field.field.node.ixp_engagement.field_ixp_blog
+    - field.field.node.ixp_engagement.field_ixp_user
+    - field.field.node.ixp_engagement.field_mentor
+    - field.field.node.ixp_engagement.field_proposed_work
+    - field.field.node.ixp_engagement.field_start_date
+    - node.type.ixp_engagement
+  module:
+    - user
+id: node.ixp_engagement.teaser
+targetEntityType: node
+bundle: ixp_engagement
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_case_number: true
+  field_drupal_issues: true
+  field_estimated_hours: true
+  field_ixp_blog: true
+  field_ixp_user: true
+  field_mentor: true
+  field_proposed_work: true
+  field_start_date: true

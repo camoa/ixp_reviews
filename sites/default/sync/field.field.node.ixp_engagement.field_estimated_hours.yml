@@ -1,0 +1,23 @@
+uuid: 1cc1c7e2-28dd-4f58-acc6-b48066b5cd69
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_estimated_hours
+    - node.type.ixp_engagement
+id: node.ixp_engagement.field_estimated_hours
+field_name: field_estimated_hours
+entity_type: node
+bundle: ixp_engagement
+label: 'Estimated Hours per week'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: Hours/week
+field_type: integer

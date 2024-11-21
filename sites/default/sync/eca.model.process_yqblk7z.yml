@@ -1,0 +1,390 @@
+uuid: 231953c3-cf7e-4485-913c-4a600c8a95e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - eca.eca.process_yqblk7z
+id: process_yqblk7z
+label: 'Creating case number for IXP'
+tags:
+  - untagged
+documentation: ''
+filename: ''
+modeldata: |
+  <?xml version="1.0" encoding="UTF-8"?>
+  <bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:qa="http://some-company/schema/bpmn/qa" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+    <bpmn2:process id="Process_yqbLK7Z" name="Creating case number for IXP" isExecutable="true" camunda:versionTag="v1">
+      <bpmn2:task id="Activity_092f2kj" name="Read counter" camunda:modelerTemplate="org.drupal.action.eca_state_read">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_state_read" />
+          </camunda:properties>
+          <camunda:field name="key">
+            <camunda:string>ixp-case</camunda:string>
+          </camunda:field>
+          <camunda:field name="token_name">
+            <camunda:string>ixp-case-seq</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1b2h43t</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1jh2h1p</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:startEvent id="Event_1lksjbv" name="creating an IXP engagement" camunda:modelerTemplate="org.drupal.event.content_entity:presave">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="content_entity:presave" />
+          </camunda:properties>
+          <camunda:field name="type">
+            <camunda:string>node ixp_engagement</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:outgoing>Flow_1hsjf2n</bpmn2:outgoing>
+      </bpmn2:startEvent>
+      <bpmn2:sequenceFlow id="Flow_1hsjf2n" sourceRef="Event_1lksjbv" targetRef="Activity_019dhg5" />
+      <bpmn2:task id="Activity_0dao651" name="Increment counter" camunda:modelerTemplate="org.drupal.action.eca_tamper:math">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_tamper:math" />
+          </camunda:properties>
+          <camunda:field name="eca_data">
+            <camunda:string>0[ixp-case-seq]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operation">
+            <camunda:string>addition</camunda:string>
+          </camunda:field>
+          <camunda:field name="flip">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="value">
+            <camunda:string>1</camunda:string>
+          </camunda:field>
+          <camunda:field name="eca_token_name">
+            <camunda:string>[ixp-case-seq]</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1jh2h1p</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1cuqnlj</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_1jh2h1p" sourceRef="Activity_092f2kj" targetRef="Activity_0dao651" />
+      <bpmn2:task id="Activity_00yvn2j" name="Create Full case number" camunda:modelerTemplate="org.drupal.action.eca_tamper:str_pad">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_tamper:str_pad" />
+          </camunda:properties>
+          <camunda:field name="eca_data">
+            <camunda:string>[ixp-case-seq]</camunda:string>
+          </camunda:field>
+          <camunda:field name="pad_length">
+            <camunda:string>5</camunda:string>
+          </camunda:field>
+          <camunda:field name="pad_string">
+            <camunda:string> 0</camunda:string>
+          </camunda:field>
+          <camunda:field name="pad_type">
+            <camunda:string>0</camunda:string>
+          </camunda:field>
+          <camunda:field name="eca_token_name">
+            <camunda:string>[ixp-case-number]</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1cuqnlj</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_11l3y23</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:task id="Activity_1s7lvlv" name="Set Case number" camunda:modelerTemplate="org.drupal.action.eca_set_field_value">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_set_field_value" />
+          </camunda:properties>
+          <camunda:field name="method">
+            <camunda:string>set:empty</camunda:string>
+          </camunda:field>
+          <camunda:field name="strip_tags">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="field_name">
+            <camunda:string>field_case_number</camunda:string>
+          </camunda:field>
+          <camunda:field name="trim">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="field_value">
+            <camunda:string>IXP-[ixp-case-number]</camunda:string>
+          </camunda:field>
+          <camunda:field name="save_entity">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="object">
+            <camunda:string>node</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_04cfex5</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_103heqj</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_04cfex5" name="Yes" camunda:modelerTemplate="org.drupal.condition.eca_entity_field_value_empty" sourceRef="Gateway_1vdkhw2" targetRef="Activity_1s7lvlv">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_entity_field_value_empty" />
+          </camunda:properties>
+          <camunda:field name="field_name">
+            <camunda:string>field_case_number</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="entity">
+            <camunda:string>node</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:task id="Activity_1wg5e91" name="Write counter" camunda:modelerTemplate="org.drupal.action.eca_state_write">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_state_write" />
+          </camunda:properties>
+          <camunda:field name="key">
+            <camunda:string>ixp-case</camunda:string>
+          </camunda:field>
+          <camunda:field name="value">
+            <camunda:string>[ixp-case-seq]</camunda:string>
+          </camunda:field>
+          <camunda:field name="use_yaml">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0zytepb</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0epbume</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_103heqj" sourceRef="Activity_1s7lvlv" targetRef="Activity_1g6avp4" />
+      <bpmn2:task id="Activity_02nhfyr" name="Print success message" camunda:modelerTemplate="org.drupal.action.action_message_action">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="action_message_action" />
+          </camunda:properties>
+          <camunda:field name="message">
+            <camunda:string>New case number assigned IXP-[ixp-case-number]</camunda:string>
+          </camunda:field>
+          <camunda:field name="replace_tokens">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0epbume</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:task id="Activity_0q4om5i" name="Print case number exist" camunda:modelerTemplate="org.drupal.action.action_message_action">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="action_message_action" />
+          </camunda:properties>
+          <camunda:field name="message">
+            <camunda:string>Case number [current-case-number]</camunda:string>
+          </camunda:field>
+          <camunda:field name="replace_tokens">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_00mqgsn</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:task id="Activity_1v7e0o9" name="Get current case number" camunda:modelerTemplate="org.drupal.action.eca_get_field_value">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_get_field_value" />
+          </camunda:properties>
+          <camunda:field name="field_name">
+            <camunda:string>field_case_number</camunda:string>
+          </camunda:field>
+          <camunda:field name="token_name">
+            <camunda:string>current-case-number</camunda:string>
+          </camunda:field>
+          <camunda:field name="object">
+            <camunda:string>node</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0w73ouf</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_00mqgsn</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0w73ouf" name="No" camunda:modelerTemplate="org.drupal.condition.eca_entity_field_value_empty" sourceRef="Gateway_1vdkhw2" targetRef="Activity_1v7e0o9">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_entity_field_value_empty" />
+          </camunda:properties>
+          <camunda:field name="field_name">
+            <camunda:string>field_case_number</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+          <camunda:field name="entity">
+            <camunda:string>node</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:sequenceFlow id="Flow_00mqgsn" sourceRef="Activity_1v7e0o9" targetRef="Activity_0q4om5i" />
+      <bpmn2:task id="Activity_1g6avp4" name="Add case number to title" camunda:modelerTemplate="org.drupal.action.eca_set_field_value">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_set_field_value" />
+          </camunda:properties>
+          <camunda:field name="method">
+            <camunda:string>set:clear</camunda:string>
+          </camunda:field>
+          <camunda:field name="strip_tags">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="field_name">
+            <camunda:string>title</camunda:string>
+          </camunda:field>
+          <camunda:field name="trim">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="field_value">
+            <camunda:string>IXP-[ixp-case-number]: [node:title]</camunda:string>
+          </camunda:field>
+          <camunda:field name="save_entity">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="object">
+            <camunda:string>node</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_103heqj</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0zytepb</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:task id="Activity_019dhg5" name="Acquire lock" camunda:modelerTemplate="org.drupal.action.eca_lock_acquire">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_lock_acquire" />
+          </camunda:properties>
+          <camunda:field name="lock_name">
+            <camunda:string>ixp-case</camunda:string>
+          </camunda:field>
+          <camunda:field name="lock_timeout">
+            <camunda:string>20</camunda:string>
+          </camunda:field>
+          <camunda:field name="lock_wait">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+          <camunda:field name="token_name">
+            <camunda:string></camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1hsjf2n</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1b2h43t</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_1b2h43t" sourceRef="Activity_019dhg5" targetRef="Activity_092f2kj" />
+      <bpmn2:sequenceFlow id="Flow_1cuqnlj" sourceRef="Activity_0dao651" targetRef="Activity_00yvn2j" />
+      <bpmn2:sequenceFlow id="Flow_0zytepb" sourceRef="Activity_1g6avp4" targetRef="Activity_1wg5e91" />
+      <bpmn2:sequenceFlow id="Flow_0epbume" sourceRef="Activity_1wg5e91" targetRef="Activity_02nhfyr" />
+      <bpmn2:exclusiveGateway id="Gateway_1vdkhw2" name="Is case number empty?&#10;">
+        <bpmn2:extensionElements />
+        <bpmn2:incoming>Flow_11l3y23</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_04cfex5</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_0w73ouf</bpmn2:outgoing>
+      </bpmn2:exclusiveGateway>
+      <bpmn2:sequenceFlow id="Flow_11l3y23" sourceRef="Activity_00yvn2j" targetRef="Gateway_1vdkhw2" />
+    </bpmn2:process>
+    <bpmndi:BPMNDiagram id="sid-d649d980-25f0-460c-b3b1-6c61ae2791fa">
+      <bpmndi:BPMNPlane id="sid-a84dce8e-2370-48ad-865a-71bff573619a" bpmnElement="Process_yqbLK7Z">
+        <bpmndi:BPMNShape id="Activity_1m3vk3h_di" bpmnElement="Activity_092f2kj">
+          <dc:Bounds x="520" y="-310" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Event_1lksjbv_di" bpmnElement="Event_1lksjbv">
+          <dc:Bounds x="322" y="-288" width="36" height="36" />
+          <bpmndi:BPMNLabel>
+            <dc:Bounds x="303" y="-245" width="76" height="27" />
+          </bpmndi:BPMNLabel>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_0dao651_di" bpmnElement="Activity_0dao651">
+          <dc:Bounds x="670" y="-310" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_00yvn2j_di" bpmnElement="Activity_00yvn2j">
+          <dc:Bounds x="830" y="-310" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_019dhg5_di" bpmnElement="Activity_019dhg5">
+          <dc:Bounds x="390" y="-310" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Gateway_1vdkhw2_di" bpmnElement="Gateway_1vdkhw2" isMarkerVisible="true">
+          <dc:Bounds x="1005" y="-295" width="50" height="50" />
+          <bpmndi:BPMNLabel>
+            <dc:Bounds x="1065" y="-290" width="76" height="40" />
+          </bpmndi:BPMNLabel>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_02nhfyr_di" bpmnElement="Activity_02nhfyr">
+          <dc:Bounds x="1450" y="-480" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1wg5e91_di" bpmnElement="Activity_1wg5e91">
+          <dc:Bounds x="1290" y="-480" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1g6avp4_di" bpmnElement="Activity_1g6avp4">
+          <dc:Bounds x="1140" y="-480" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1s7lvlv_di" bpmnElement="Activity_1s7lvlv">
+          <dc:Bounds x="980" y="-480" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_0q4om5i_di" bpmnElement="Activity_0q4om5i">
+          <dc:Bounds x="1140" y="-130" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1v7e0o9_di" bpmnElement="Activity_1v7e0o9">
+          <dc:Bounds x="980" y="-130" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNEdge id="Flow_1hsjf2n_di" bpmnElement="Flow_1hsjf2n">
+          <di:waypoint x="358" y="-270" />
+          <di:waypoint x="390" y="-270" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1jh2h1p_di" bpmnElement="Flow_1jh2h1p">
+          <di:waypoint x="620" y="-270" />
+          <di:waypoint x="670" y="-270" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_04cfex5_di" bpmnElement="Flow_04cfex5">
+          <di:waypoint x="1030" y="-295" />
+          <di:waypoint x="1030" y="-400" />
+          <bpmndi:BPMNLabel>
+            <dc:Bounds x="1000" y="-347" width="19" height="14" />
+          </bpmndi:BPMNLabel>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_103heqj_di" bpmnElement="Flow_103heqj">
+          <di:waypoint x="1080" y="-440" />
+          <di:waypoint x="1140" y="-440" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0w73ouf_di" bpmnElement="Flow_0w73ouf">
+          <di:waypoint x="1030" y="-245" />
+          <di:waypoint x="1030" y="-130" />
+          <bpmndi:BPMNLabel>
+            <dc:Bounds x="1034" y="-194" width="15" height="14" />
+          </bpmndi:BPMNLabel>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_00mqgsn_di" bpmnElement="Flow_00mqgsn">
+          <di:waypoint x="1080" y="-90" />
+          <di:waypoint x="1140" y="-90" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1b2h43t_di" bpmnElement="Flow_1b2h43t">
+          <di:waypoint x="490" y="-270" />
+          <di:waypoint x="520" y="-270" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1cuqnlj_di" bpmnElement="Flow_1cuqnlj">
+          <di:waypoint x="770" y="-270" />
+          <di:waypoint x="830" y="-270" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0zytepb_di" bpmnElement="Flow_0zytepb">
+          <di:waypoint x="1240" y="-440" />
+          <di:waypoint x="1290" y="-440" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0epbume_di" bpmnElement="Flow_0epbume">
+          <di:waypoint x="1390" y="-440" />
+          <di:waypoint x="1450" y="-440" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_11l3y23_di" bpmnElement="Flow_11l3y23">
+          <di:waypoint x="930" y="-270" />
+          <di:waypoint x="1005" y="-270" />
+        </bpmndi:BPMNEdge>
+      </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+  </bpmn2:definitions>

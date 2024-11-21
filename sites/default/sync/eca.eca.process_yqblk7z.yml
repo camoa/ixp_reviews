@@ -1,0 +1,165 @@
+uuid: c736084c-5302-4d19-9ff0-d484c7d06533
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.ixp_engagement.field_case_number
+    - field.storage.node.field_case_number
+    - node.type.ixp_engagement
+  module:
+    - eca_base
+    - eca_content
+    - eca_tamper
+id: process_yqblk7z
+modeller: bpmn_io
+label: 'Creating case number for IXP'
+version: v1
+weight: 0
+events:
+  Event_1lksjbv:
+    plugin: 'content_entity:presave'
+    label: 'creating an IXP engagement'
+    configuration:
+      type: 'node ixp_engagement'
+    successors:
+      -
+        id: Activity_019dhg5
+        condition: ''
+conditions:
+  Flow_04cfex5:
+    plugin: eca_entity_field_value_empty
+    configuration:
+      negate: false
+      field_name: field_case_number
+      entity: node
+  Flow_0w73ouf:
+    plugin: eca_entity_field_value_empty
+    configuration:
+      field_name: field_case_number
+      negate: true
+      entity: node
+gateways:
+  Gateway_1vdkhw2:
+    type: 0
+    successors:
+      -
+        id: Activity_1s7lvlv
+        condition: Flow_04cfex5
+      -
+        id: Activity_1v7e0o9
+        condition: Flow_0w73ouf
+actions:
+  Activity_092f2kj:
+    plugin: eca_state_read
+    label: 'Read counter'
+    configuration:
+      key: ixp-case
+      token_name: ixp-case-seq
+    successors:
+      -
+        id: Activity_0dao651
+        condition: ''
+  Activity_0dao651:
+    plugin: 'eca_tamper:math'
+    label: 'Increment counter'
+    configuration:
+      operation: addition
+      flip: false
+      value: '1'
+      eca_data: '0[ixp-case-seq]'
+      eca_token_name: '[ixp-case-seq]'
+    successors:
+      -
+        id: Activity_00yvn2j
+        condition: ''
+  Activity_00yvn2j:
+    plugin: 'eca_tamper:str_pad'
+    label: 'Create Full case number'
+    configuration:
+      pad_length: '5'
+      pad_string: '0'
+      pad_type: '0'
+      eca_data: '[ixp-case-seq]'
+      eca_token_name: '[ixp-case-number]'
+    successors:
+      -
+        id: Gateway_1vdkhw2
+        condition: ''
+  Activity_1s7lvlv:
+    plugin: eca_set_field_value
+    label: 'Set Case number'
+    configuration:
+      field_name: field_case_number
+      field_value: 'IXP-[ixp-case-number]'
+      method: 'set:empty'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: node
+    successors:
+      -
+        id: Activity_1g6avp4
+        condition: ''
+  Activity_1wg5e91:
+    plugin: eca_state_write
+    label: 'Write counter'
+    configuration:
+      key: ixp-case
+      value: '[ixp-case-seq]'
+      use_yaml: false
+    successors:
+      -
+        id: Activity_02nhfyr
+        condition: ''
+  Activity_02nhfyr:
+    plugin: action_message_action
+    label: 'Print success message'
+    configuration:
+      replace_tokens: false
+      message: 'New case number assigned IXP-[ixp-case-number]'
+    successors: {  }
+  Activity_0q4om5i:
+    plugin: action_message_action
+    label: 'Print case number exist'
+    configuration:
+      replace_tokens: false
+      message: 'Case number [current-case-number]'
+    successors: {  }
+  Activity_1v7e0o9:
+    plugin: eca_get_field_value
+    label: 'Get current case number'
+    configuration:
+      field_name: field_case_number
+      token_name: current-case-number
+      object: node
+    successors:
+      -
+        id: Activity_0q4om5i
+        condition: ''
+  Activity_1g6avp4:
+    plugin: eca_set_field_value
+    label: 'Add case number to title'
+    configuration:
+      field_name: title
+      field_value: 'IXP-[ixp-case-number]: [node:title]'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: node
+    successors:
+      -
+        id: Activity_1wg5e91
+        condition: ''
+  Activity_019dhg5:
+    plugin: eca_lock_acquire
+    label: 'Acquire lock'
+    configuration:
+      lock_name: ixp-case
+      lock_timeout: '20'
+      lock_wait: true
+      token_name: ''
+    successors:
+      -
+        id: Activity_092f2kj
+        condition: ''

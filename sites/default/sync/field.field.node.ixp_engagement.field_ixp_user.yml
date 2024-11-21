@@ -1,0 +1,25 @@
+uuid: ef23a873-c616-495a-b311-f441393aa001
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ixp_user
+    - node.type.ixp_engagement
+id: node.ixp_engagement.field_ixp_user
+field_name: field_ixp_user
+entity_type: node
+bundle: ixp_engagement
+label: 'IXP User'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: mentors
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

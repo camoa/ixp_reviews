@@ -1,0 +1,255 @@
+uuid: d95ab67a-56a5-4bc7-b38f-f6df024d1009
+langcode: en
+status: true
+dependencies:
+  config:
+    - eca.eca.eca_lib_0029
+_core:
+  default_config_hash: Jr3Uh13pW-THyIKE75-l9GDPk2AqXxapwfLkWSj1hW4
+id: eca_lib_0029
+label: 'Add role to inserted or updated user'
+tags:
+  - simple
+  - presave
+  - insert
+  - update
+  - 'content entity'
+documentation: |-
+  This model demonstrates how to add a role to an inserted or updated user entity. There are actually 3 potential ways of doing this, only 1 of them being recommended. The recorded session (see link below) shows the issues you can run into when choosing one of the other options and it may become transparent, why the third option is the best of the available ones.
+
+  The creation of this module was recorded and the video with additional explanations can be [watched here](https://tube.tchncs.de/w/odtnGZjaEAKtzZSVX1gdAS).
+filename: ''
+modeldata: |
+  <?xml version="1.0" encoding="UTF-8"?>
+  <bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:qa="http://some-company/schema/bpmn/qa" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+    <bpmn2:process id="eca_lib_0029" name="Add role to inserted or updated user" isExecutable="true" camunda:versionTag="v2">
+      <bpmn2:documentation>This model demonstrates how to add a role to an inserted or updated user entity. There are actually 3 potential ways of doing this, only 1 of them being recommended. The recorded session (see link below) shows the issues you can run into when choosing one of the other options and it may become transparent, why the third option is the best of the available ones.
+
+  The creation of this module was recorded and the video with additional explanations can be [watched here](https://tube.tchncs.de/w/odtnGZjaEAKtzZSVX1gdAS).</bpmn2:documentation>
+      <bpmn2:extensionElements>
+        <camunda:properties>
+          <camunda:property name="Changelog v1" value="Initial version"/>
+          <camunda:property name="Tags" value="simple,presave,insert,update,content entity"/>
+          <camunda:property name="Changelog v2" value="Clean-up the model"/>
+        </camunda:properties>
+      </bpmn2:extensionElements>
+      <bpmn2:startEvent id="Event_15fsmqd" name="Presave User" camunda:modelerTemplate="org.drupal.event.content_entity:presave">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="content_entity:presave"/>
+          </camunda:properties>
+          <camunda:field name="type">
+            <camunda:string>user _all</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:outgoing>Flow_1gi20r4</bpmn2:outgoing>
+      </bpmn2:startEvent>
+      <bpmn2:task id="Activity_1r7v54x" name="Switch to user 1" camunda:modelerTemplate="org.drupal.action.eca_switch_account">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_switch_account"/>
+          </camunda:properties>
+          <camunda:field name="user_id">
+            <camunda:string>1</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0ej3abz</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1q84r8w</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_14b3t2b</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:task id="Activity_1kz152s" name="Load saved user entity" camunda:modelerTemplate="org.drupal.action.eca_token_set_value">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_token_set_value"/>
+          </camunda:properties>
+          <camunda:field name="token_name">
+            <camunda:string>saveduser</camunda:string>
+          </camunda:field>
+          <camunda:field name="token_value">
+            <camunda:string>[user]</camunda:string>
+          </camunda:field>
+          <camunda:field name="use_yaml">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1gi20r4</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1gsqlu4</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_1gsqlu4" sourceRef="Activity_1kz152s" targetRef="Activity_0raovyb"/>
+      <bpmn2:task id="Activity_1jrvkj9" name="Print success message" camunda:modelerTemplate="org.drupal.action.action_message_action">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="action_message_action"/>
+          </camunda:properties>
+          <camunda:field name="message">
+            <camunda:string>Succeeded !!!</camunda:string>
+          </camunda:field>
+          <camunda:field name="replace_tokens">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1dhqote</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_1gi20r4" sourceRef="Event_15fsmqd" targetRef="Activity_1kz152s"/>
+      <bpmn2:task id="Activity_0wn1igg" name="Add role to field" camunda:modelerTemplate="org.drupal.action.eca_set_field_value">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_set_field_value"/>
+          </camunda:properties>
+          <camunda:field name="method">
+            <camunda:string>append:not_full</camunda:string>
+          </camunda:field>
+          <camunda:field name="strip_tags">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="trim">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="field_name">
+            <camunda:string>roles</camunda:string>
+          </camunda:field>
+          <camunda:field name="save_entity">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="field_value">
+            <camunda:string>[eca_user_role_role]</camunda:string>
+          </camunda:field>
+          <camunda:field name="object">
+            <camunda:string>saveduser</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1q84r8w</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1dhqote</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_1q84r8w" name="does not have role?" camunda:modelerTemplate="org.drupal.condition.eca_user_role" sourceRef="Activity_1r7v54x" targetRef="Activity_0wn1igg">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_user_role"/>
+          </camunda:properties>
+          <camunda:field name="account">
+            <camunda:string>[saveduser]</camunda:string>
+          </camunda:field>
+          <camunda:field name="role">
+            <camunda:string>_eca_token</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:sequenceFlow id="Flow_1dhqote" sourceRef="Activity_0wn1igg" targetRef="Activity_1jrvkj9"/>
+      <bpmn2:task id="Activity_1ad4xtj" name="Print fail message" camunda:modelerTemplate="org.drupal.action.action_message_action">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="action_message_action"/>
+          </camunda:properties>
+          <camunda:field name="message">
+            <camunda:string>User already has the role.</camunda:string>
+          </camunda:field>
+          <camunda:field name="replace_tokens">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_14b3t2b</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_14b3t2b" name="has role?" camunda:modelerTemplate="org.drupal.condition.eca_user_role" sourceRef="Activity_1r7v54x" targetRef="Activity_1ad4xtj">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_user_role"/>
+          </camunda:properties>
+          <camunda:field name="account">
+            <camunda:string>[saveduser]</camunda:string>
+          </camunda:field>
+          <camunda:field name="role">
+            <camunda:string>_eca_token</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:task id="Activity_0raovyb" name="Set role token" camunda:modelerTemplate="org.drupal.action.eca_token_set_value">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_token_set_value"/>
+          </camunda:properties>
+          <camunda:field name="token_name">
+            <camunda:string>eca_user_role_role</camunda:string>
+          </camunda:field>
+          <camunda:field name="token_value">
+            <camunda:string>[user:field_role:value]</camunda:string>
+          </camunda:field>
+          <camunda:field name="use_yaml">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1gsqlu4</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0ej3abz</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0ej3abz" sourceRef="Activity_0raovyb" targetRef="Activity_1r7v54x"/>
+    </bpmn2:process>
+    <bpmndi:BPMNDiagram id="sid-4332adf4-0181-4bb4-b154-c4cd06697b0a">
+      <bpmndi:BPMNPlane id="sid-48cda04e-4989-49da-97ff-05fc88a71eaf" bpmnElement="eca_lib_0029">
+        <bpmndi:BPMNShape id="Event_15fsmqd_di" bpmnElement="Event_15fsmqd">
+          <dc:Bounds x="212" y="162" width="36" height="36"/>
+          <bpmndi:BPMNLabel>
+            <dc:Bounds x="197" y="205" width="67" height="14"/>
+          </bpmndi:BPMNLabel>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1kz152s_di" bpmnElement="Activity_1kz152s">
+          <dc:Bounds x="320" y="140" width="100" height="80"/>
+          <bpmndi:BPMNLabel/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1ad4xtj_di" bpmnElement="Activity_1ad4xtj">
+          <dc:Bounds x="850" y="140" width="100" height="80"/>
+          <bpmndi:BPMNLabel/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1jrvkj9_di" bpmnElement="Activity_1jrvkj9">
+          <dc:Bounds x="850" y="280" width="100" height="80"/>
+          <bpmndi:BPMNLabel/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_0wn1igg_di" bpmnElement="Activity_0wn1igg">
+          <dc:Bounds x="660" y="280" width="100" height="80"/>
+          <bpmndi:BPMNLabel/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1r7v54x_di" bpmnElement="Activity_1r7v54x">
+          <dc:Bounds x="660" y="140" width="100" height="80"/>
+          <bpmndi:BPMNLabel/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_0raovyb_di" bpmnElement="Activity_0raovyb">
+          <dc:Bounds x="490" y="140" width="100" height="80"/>
+          <bpmndi:BPMNLabel/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNEdge id="Flow_1gsqlu4_di" bpmnElement="Flow_1gsqlu4">
+          <di:waypoint x="420" y="180"/>
+          <di:waypoint x="490" y="180"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1gi20r4_di" bpmnElement="Flow_1gi20r4">
+          <di:waypoint x="248" y="180"/>
+          <di:waypoint x="320" y="180"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1q84r8w_di" bpmnElement="Flow_1q84r8w">
+          <di:waypoint x="710" y="220"/>
+          <di:waypoint x="710" y="280"/>
+          <bpmndi:BPMNLabel>
+            <dc:Bounds x="715" y="236" width="70" height="27"/>
+          </bpmndi:BPMNLabel>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1dhqote_di" bpmnElement="Flow_1dhqote">
+          <di:waypoint x="760" y="320"/>
+          <di:waypoint x="850" y="320"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_14b3t2b_di" bpmnElement="Flow_14b3t2b">
+          <di:waypoint x="760" y="180"/>
+          <di:waypoint x="850" y="180"/>
+          <bpmndi:BPMNLabel>
+            <dc:Bounds x="787" y="183" width="46" height="14"/>
+          </bpmndi:BPMNLabel>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0ej3abz_di" bpmnElement="Flow_0ej3abz">
+          <di:waypoint x="590" y="180"/>
+          <di:waypoint x="660" y="180"/>
+        </bpmndi:BPMNEdge>
+      </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+  </bpmn2:definitions>

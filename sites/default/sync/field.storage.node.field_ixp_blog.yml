@@ -1,0 +1,19 @@
+uuid: ed1f04c5-7826-4f79-83e7-cb89b63b3b7f
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - node
+id: node.field_ixp_blog
+field_name: field_ixp_blog
+entity_type: node
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

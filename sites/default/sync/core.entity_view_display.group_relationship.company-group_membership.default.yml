@@ -1,0 +1,23 @@
+uuid: 8a2cee38-44ab-41a5-ba18-3eb87f1100dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.group_relationship.company-group_membership.group_roles
+    - group.relationship_type.company-group_membership
+id: group_relationship.company-group_membership.default
+targetEntityType: group_relationship
+bundle: company-group_membership
+mode: default
+content:
+  group_roles:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
+hidden:
+  entity_id: true
+  uid: true

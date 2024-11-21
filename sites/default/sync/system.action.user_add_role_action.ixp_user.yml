@@ -1,0 +1,14 @@
+uuid: 9f15f7fa-0077-4aad-b0c9-dea6def86f3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.ixp_user
+  module:
+    - user
+id: user_add_role_action.ixp_user
+label: 'Add the IXP User role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: ixp_user
