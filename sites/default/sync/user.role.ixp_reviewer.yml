@@ -1,0 +1,79 @@
+uuid: 1145862a-afc6-459b-8d50-bd485e4aba25
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+    - filter.format.full_html
+    - node.type.final_report_ixp
+    - node.type.ixp_engagement
+    - node.type.progress_report
+    - workflows.workflow.ixp_approval_process
+  module:
+    - announcements_feed
+    - comment
+    - contact
+    - content_moderation
+    - file
+    - filter
+    - group
+    - layout_builder
+    - moderation_dashboard
+    - moderation_sidebar
+    - node
+    - path
+    - system
+    - taxonomy
+    - toolbar
+id: ixp_reviewer
+label: 'IXP Reviewer'
+weight: 7
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access announcements'
+  - 'access comments'
+  - 'access content'
+  - 'access group overview'
+  - 'access site-wide contact form'
+  - 'access taxonomy overview'
+  - 'access toolbar'
+  - 'access user contact forms'
+  - 'access user profiles'
+  - 'administer group'
+  - 'change own username'
+  - 'configure any layout'
+  - 'create company group'
+  - 'create final_report_ixp content'
+  - 'create ixp_engagement content'
+  - 'create progress_report content'
+  - 'create url aliases'
+  - 'delete own files'
+  - 'delete own final_report_ixp content'
+  - 'delete own ixp_engagement content'
+  - 'delete own progress_report content'
+  - 'edit any final_report_ixp content'
+  - 'edit any ixp_engagement content'
+  - 'edit any progress_report content'
+  - 'edit own comments'
+  - 'edit own final_report_ixp content'
+  - 'edit own ixp_engagement content'
+  - 'edit own progress_report content'
+  - 'post comments'
+  - 'skip comment approval'
+  - 'use ixp_approval_process transition approval'
+  - 'use ixp_approval_process transition create_new_draft'
+  - 'use ixp_approval_process transition need_more_info'
+  - 'use ixp_approval_process transition publish'
+  - 'use ixp_approval_process transition ready_to_review'
+  - 'use moderation dashboard'
+  - 'use moderation sidebar'
+  - 'use text format basic_html'
+  - 'use text format full_html'
+  - 'view any moderation dashboard'
+  - 'view any unpublished content'
+  - 'view latest version'
+  - 'view own unpublished content'
+  - 'view the administration theme'
+  - 'view user email addresses'
+  - 'view vocabulary labels'

@@ -1,0 +1,14 @@
+uuid: fc117a8c-0e10-478a-8a4b-9c3a66da8169
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.ixp_reviewer
+  module:
+    - user
+id: user_remove_role_action.ixp_reviewer
+label: 'Remove the IXP Reviewer role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: ixp_reviewer

@@ -1,0 +1,14 @@
+uuid: e01a3cf3-8209-4016-9d5c-f903276970e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.ixp_reviewer
+  module:
+    - user
+id: user_add_role_action.ixp_reviewer
+label: 'Add the IXP Reviewer role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: ixp_reviewer
