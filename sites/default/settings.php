@@ -855,6 +855,10 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # $settings['migrate_source_version'] = '';
 # $settings['migrate_file_public_path'] = '';
 # $settings['migrate_file_private_path'] = '';
+  if (isset($_SERVER['HTTP_HOST'])) {
+
+    // Get the HTTP host value
+    $http_host = $_SERVER['HTTP_HOST'];
 
     // Add different configurations based on the HTTP host value
     switch ($http_host) {
