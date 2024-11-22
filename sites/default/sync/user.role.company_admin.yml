@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - node.type.ixp_engagement
+    - workflows.workflow.ixp_approval_process
   module:
     - comment
     - contact
+    - content_moderation
     - group
     - node
     - system
@@ -19,7 +21,6 @@ permissions:
   - 'access content'
   - 'access group overview'
   - 'access site-wide contact form'
-  - 'access user contact forms'
   - 'access user profiles'
   - 'create company group'
   - 'create ixp_engagement content'
@@ -27,4 +28,7 @@ permissions:
   - 'edit own comments'
   - 'edit own ixp_engagement content'
   - 'post comments'
+  - 'use ixp_approval_process transition create_new_draft'
+  - 'use ixp_approval_process transition publish'
+  - 'use ixp_approval_process transition ready_to_review'
   - 'view own unpublished content'

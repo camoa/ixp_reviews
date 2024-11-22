@@ -1,0 +1,28 @@
+uuid: 23bed626-89ab-46e4-a81b-b07d5df97cea
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.progress_report.field_assigned_tasks
+    - field.field.node.progress_report.field_ixp_case
+    - field.field.node.progress_report.field_mentor_available
+    - field.field.node.progress_report.field_tasks_skills
+    - node.type.progress_report
+  module:
+    - user
+id: node.progress_report.teaser
+targetEntityType: node
+bundle: progress_report
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_assigned_tasks: true
+  field_ixp_case: true
+  field_mentor_available: true
+  field_tasks_skills: true

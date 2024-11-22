@@ -1,0 +1,24 @@
+uuid: b0d9761f-5ce6-4a4e-8d83-ef7e10d56192
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_suggestions
+    - filter.format.basic_html
+    - node.type.final_report_ixp
+  module:
+    - text
+id: node.final_report_ixp.field_suggestions
+field_name: field_suggestions
+entity_type: node
+bundle: final_report_ixp
+label: 'Suggestions to the program?'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

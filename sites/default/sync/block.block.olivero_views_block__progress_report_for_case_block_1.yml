@@ -1,0 +1,25 @@
+uuid: c9dfb963-a089-4229-b091-39b0b665e85f
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.progress_report_for_case
+  module:
+    - views
+  theme:
+    - olivero
+id: olivero_views_block__progress_report_for_case_block_1
+theme: olivero
+region: content_below
+weight: -8
+provider: null
+plugin: 'views_block:progress_report_for_case-block_1'
+settings:
+  id: 'views_block:progress_report_for_case-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+visibility: {  }

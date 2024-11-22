@@ -1,0 +1,23 @@
+uuid: 6004ec04-29be-4e60-b3a2-3fc572a8a63b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_blog_ack
+    - node.type.ixp_engagement
+id: node.ixp_engagement.field_blog_ack
+field_name: field_blog_ack
+entity_type: node
+bundle: ixp_engagement
+label: 'Will provide a blog from the IXP'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

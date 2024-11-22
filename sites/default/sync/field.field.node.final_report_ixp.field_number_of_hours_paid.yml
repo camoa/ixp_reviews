@@ -1,0 +1,23 @@
+uuid: e08a26a7-d844-4867-ab1e-5c20d78dcd96
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_number_of_hours_paid
+    - node.type.final_report_ixp
+id: node.final_report_ixp.field_number_of_hours_paid
+field_name: field_number_of_hours_paid
+entity_type: node
+bundle: final_report_ixp
+label: 'Number of hours paid'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: Hours
+field_type: integer

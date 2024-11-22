@@ -1,24 +1,21 @@
-uuid: f32184c5-8597-41a1-b5e1-e9effaf192a1
+uuid: d80f5453-6dad-49bf-9fa2-25f0882eb956
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.ixp_engagement.field_blog_ack
-    - field.field.node.ixp_engagement.field_case_number
-    - field.field.node.ixp_engagement.field_drupal_credit_ack
-    - field.field.node.ixp_engagement.field_estimated_hours
-    - field.field.node.ixp_engagement.field_ixp_user
-    - field.field.node.ixp_engagement.field_mentor
-    - field.field.node.ixp_engagement.field_proposed_work
-    - field.field.node.ixp_engagement.field_start_date
-    - node.type.ixp_engagement
+    - field.field.node.final_report_ixp.field_desc_growth
+    - field.field.node.final_report_ixp.field_ixp_case
+    - field.field.node.final_report_ixp.field_mentor_available
+    - field.field.node.final_report_ixp.field_number_of_hours_paid
+    - field.field.node.final_report_ixp.field_rate_paid
+    - field.field.node.final_report_ixp.field_suggestions
+    - node.type.final_report_ixp
   module:
-    - datetime
     - path
     - text
-id: node.ixp_engagement.default
+id: node.final_report_ixp.default
 targetEntityType: node
-bundle: ixp_engagement
+bundle: final_report_ixp
 mode: default
 content:
   created:
@@ -27,46 +24,15 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_blog_ack:
-    type: boolean_checkbox
-    weight: 130
+  field_desc_growth:
+    type: text_textarea
+    weight: 124
     region: content
     settings:
-      display_label: true
-    third_party_settings: {  }
-  field_case_number:
-    type: string_textfield
-    weight: 129
-    region: content
-    settings:
-      size: 60
+      rows: 5
       placeholder: ''
     third_party_settings: {  }
-  field_drupal_credit_ack:
-    type: boolean_checkbox
-    weight: 131
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  field_estimated_hours:
-    type: number
-    weight: 125
-    region: content
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-  field_ixp_user:
-    type: entity_reference_autocomplete
-    weight: 123
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_mentor:
+  field_ixp_case:
     type: entity_reference_autocomplete
     weight: 122
     region: content
@@ -76,19 +42,34 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_proposed_work:
-    type: text_textarea
+  field_mentor_available:
+    type: boolean_checkbox
+    weight: 123
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_number_of_hours_paid:
+    type: number
+    weight: 125
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_rate_paid:
+    type: number
     weight: 126
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_suggestions:
+    type: text_textarea
+    weight: 127
     region: content
     settings:
       rows: 5
       placeholder: ''
-    third_party_settings: {  }
-  field_start_date:
-    type: datetime_default
-    weight: 124
-    region: content
-    settings: {  }
     third_party_settings: {  }
   path:
     type: path

@@ -4,10 +4,10 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.ixp_engagement.field_blog_ack
     - field.field.node.ixp_engagement.field_case_number
-    - field.field.node.ixp_engagement.field_drupal_issues
+    - field.field.node.ixp_engagement.field_drupal_credit_ack
     - field.field.node.ixp_engagement.field_estimated_hours
-    - field.field.node.ixp_engagement.field_ixp_blog
     - field.field.node.ixp_engagement.field_ixp_user
     - field.field.node.ixp_engagement.field_mentor
     - field.field.node.ixp_engagement.field_proposed_work
@@ -26,10 +26,10 @@ content:
     weight: 100
     region: content
 hidden:
+  field_blog_ack: true
   field_case_number: true
-  field_drupal_issues: true
+  field_drupal_credit_ack: true
   field_estimated_hours: true
-  field_ixp_blog: true
   field_ixp_user: true
   field_mentor: true
   field_proposed_work: true

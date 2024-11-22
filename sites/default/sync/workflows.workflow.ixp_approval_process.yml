@@ -1,0 +1,76 @@
+uuid: 455de2b1-76b8-4dcc-8986-4462aa34f1a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.ixp_engagement
+  module:
+    - content_moderation
+id: ixp_approval_process
+label: 'IXP Approval process'
+type: content_moderation
+type_settings:
+  states:
+    approved:
+      label: Approved
+      weight: 3
+      published: true
+      default_revision: true
+    draft:
+      label: 'Engagement proposed'
+      weight: 0
+      published: false
+      default_revision: false
+    final_review:
+      label: 'Final Review'
+      weight: 2
+      published: true
+      default_revision: true
+    need_more_info:
+      label: 'Need more Info'
+      weight: 4
+      published: true
+      default_revision: true
+    published:
+      label: 'Engagement Start'
+      weight: 1
+      published: true
+      default_revision: true
+  transitions:
+    approval:
+      label: Approval
+      from:
+        - final_review
+      to: approved
+      weight: 4
+    create_new_draft:
+      label: 'Create New Engagement'
+      from:
+        - draft
+        - published
+      to: draft
+      weight: 0
+    need_more_info:
+      label: 'Need more info'
+      from:
+        - final_review
+      to: need_more_info
+      weight: 3
+    publish:
+      label: 'Start engagement'
+      from:
+        - draft
+        - published
+      to: published
+      weight: 1
+    ready_to_review:
+      label: 'Ready to review'
+      from:
+        - need_more_info
+        - published
+      to: final_review
+      weight: 2
+  entity_types:
+    node:
+      - ixp_engagement
+  default_moderation_state: draft

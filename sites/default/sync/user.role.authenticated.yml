@@ -4,11 +4,15 @@ status: true
 dependencies:
   config:
     - filter.format.basic_html
+    - node.type.final_report_ixp
+    - node.type.ixp_engagement
+    - node.type.progress_report
   module:
     - comment
     - contact
     - file
     - filter
+    - node
     - search
     - shortcut
     - system
@@ -25,7 +29,11 @@ permissions:
   - 'access site-wide contact form'
   - 'access user profiles'
   - 'delete own files'
+  - 'edit own final_report_ixp content'
+  - 'edit own ixp_engagement content'
+  - 'edit own progress_report content'
   - 'post comments'
   - 'search content'
   - 'skip comment approval'
   - 'use text format basic_html'
+  - 'view the administration theme'

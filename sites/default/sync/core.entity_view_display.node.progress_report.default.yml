@@ -1,0 +1,59 @@
+uuid: 3a7074f0-bf09-4eb0-a831-bf642c63ae22
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.progress_report.field_assigned_tasks
+    - field.field.node.progress_report.field_ixp_case
+    - field.field.node.progress_report.field_mentor_available
+    - field.field.node.progress_report.field_tasks_skills
+    - node.type.progress_report
+  module:
+    - text
+    - user
+id: node.progress_report.default
+targetEntityType: node
+bundle: progress_report
+mode: default
+content:
+  field_assigned_tasks:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_ixp_case:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_mentor_available:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_tasks_skills:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

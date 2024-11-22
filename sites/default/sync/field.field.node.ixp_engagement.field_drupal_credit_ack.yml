@@ -1,0 +1,23 @@
+uuid: a9d76d00-21d2-43e5-b341-49c07468a9ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_drupal_credit_ack
+    - node.type.ixp_engagement
+id: node.ixp_engagement.field_drupal_credit_ack
+field_name: field_drupal_credit_ack
+entity_type: node
+bundle: ixp_engagement
+label: 'Will provide 3 drupal credits for IXP'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

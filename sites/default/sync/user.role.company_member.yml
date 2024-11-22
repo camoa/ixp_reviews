@@ -1,10 +1,21 @@
 uuid: ebe6d066-5c80-4e9d-9482-571aa44a386c
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - workflows.workflow.ixp_approval_process
+  module:
+    - content_moderation
+    - group
+    - node
 id: company_member
 label: 'Company Member'
 weight: 5
 is_admin: null
 permissions:
+  - 'access group overview'
   - 'access user profiles'
+  - 'use ixp_approval_process transition create_new_draft'
+  - 'use ixp_approval_process transition publish'
+  - 'use ixp_approval_process transition ready_to_review'
+  - 'view own unpublished content'

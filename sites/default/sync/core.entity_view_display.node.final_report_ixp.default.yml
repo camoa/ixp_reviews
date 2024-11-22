@@ -1,0 +1,78 @@
+uuid: 37167aca-6872-40cc-bdc2-cf44bbc1fa77
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.final_report_ixp.field_desc_growth
+    - field.field.node.final_report_ixp.field_ixp_case
+    - field.field.node.final_report_ixp.field_mentor_available
+    - field.field.node.final_report_ixp.field_number_of_hours_paid
+    - field.field.node.final_report_ixp.field_rate_paid
+    - field.field.node.final_report_ixp.field_suggestions
+    - node.type.final_report_ixp
+  module:
+    - text
+    - user
+id: node.final_report_ixp.default
+targetEntityType: node
+bundle: final_report_ixp
+mode: default
+content:
+  field_desc_growth:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_ixp_case:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_mentor_available:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_number_of_hours_paid:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_rate_paid:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_suggestions:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

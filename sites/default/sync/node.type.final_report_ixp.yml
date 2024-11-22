@@ -1,0 +1,18 @@
+uuid: ee93fb0e-6036-4e36-a4c1-481e2ccc07d4
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Final Report IXP'
+type: final_report_ixp
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

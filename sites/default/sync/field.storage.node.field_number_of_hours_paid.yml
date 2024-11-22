@@ -1,0 +1,20 @@
+uuid: a87e4666-ad68-4dd3-9301-3024e472b059
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_number_of_hours_paid
+field_name: field_number_of_hours_paid
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

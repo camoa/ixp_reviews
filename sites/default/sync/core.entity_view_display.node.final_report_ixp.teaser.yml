@@ -1,0 +1,32 @@
+uuid: 6110ae51-bd0b-4439-806f-ffb2dfb7cd96
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.final_report_ixp.field_desc_growth
+    - field.field.node.final_report_ixp.field_ixp_case
+    - field.field.node.final_report_ixp.field_mentor_available
+    - field.field.node.final_report_ixp.field_number_of_hours_paid
+    - field.field.node.final_report_ixp.field_rate_paid
+    - field.field.node.final_report_ixp.field_suggestions
+    - node.type.final_report_ixp
+  module:
+    - user
+id: node.final_report_ixp.teaser
+targetEntityType: node
+bundle: final_report_ixp
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_desc_growth: true
+  field_ixp_case: true
+  field_mentor_available: true
+  field_number_of_hours_paid: true
+  field_rate_paid: true
+  field_suggestions: true

@@ -1,0 +1,21 @@
+uuid: a7ebadfe-d55d-4681-b46e-d08304a2ee69
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mentor_available
+    - node.type.final_report_ixp
+id: node.final_report_ixp.field_mentor_available
+field_name: field_mentor_available
+entity_type: node
+bundle: final_report_ixp
+label: 'Mentor Available'
+description: 'Was a mentor available for the new, inexperienced Drupal developer at least one hour out of every ten paid work hours since the last progress report?'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

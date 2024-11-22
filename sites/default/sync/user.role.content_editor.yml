@@ -1,0 +1,59 @@
+uuid: 7d85f3e0-6f8b-41e2-8b94-498eb28d605d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.article
+    - node.type.page
+    - taxonomy.vocabulary.tags
+    - workflows.workflow.ixp_approval_process
+  module:
+    - comment
+    - content_moderation
+    - contextual
+    - file
+    - moderation_dashboard
+    - moderation_sidebar
+    - node
+    - path
+    - system
+    - taxonomy
+    - toolbar
+_core:
+  default_config_hash: e_wG1u7SrGaJbY2-Szgbgl-c8T3kdirU3uTNq2c_QJQ
+id: content_editor
+label: 'Content editor'
+weight: 2
+is_admin: false
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access files overview'
+  - 'access toolbar'
+  - 'administer url aliases'
+  - 'create article content'
+  - 'create page content'
+  - 'create terms in tags'
+  - 'create url aliases'
+  - 'delete article revisions'
+  - 'delete own article content'
+  - 'delete own files'
+  - 'delete own page content'
+  - 'delete page revisions'
+  - 'edit own article content'
+  - 'edit own comments'
+  - 'edit own page content'
+  - 'edit terms in tags'
+  - 'revert all revisions'
+  - 'use ixp_approval_process transition approval'
+  - 'use ixp_approval_process transition create_new_draft'
+  - 'use ixp_approval_process transition need_more_info'
+  - 'use ixp_approval_process transition publish'
+  - 'use ixp_approval_process transition ready_to_review'
+  - 'use moderation dashboard'
+  - 'use moderation sidebar'
+  - 'view all revisions'
+  - 'view any moderation dashboard'
+  - 'view own unpublished content'
+  - 'view the administration theme'

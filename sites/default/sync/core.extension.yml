@@ -15,6 +15,7 @@ module:
   config: 0
   config_overlay: 0
   contact: 0
+  content_moderation: 0
   contextual: 0
   datetime: 0
   dblog: 0
@@ -26,6 +27,7 @@ module:
   eca_tamper: 0
   eca_ui: 0
   eca_user: 0
+  eca_workflow: 0
   editor: 0
   entity: 0
   field: 0
@@ -39,9 +41,13 @@ module:
   help: 0
   history: 0
   image: 0
+  layout_builder: 0
+  layout_discovery: 0
   link: 0
   menu_link_content: 0
   menu_ui: 0
+  moderation_dashboard: 0
+  moderation_sidebar: 0
   mysql: 0
   node: 0
   options: 0
@@ -60,6 +66,7 @@ module:
   user: 0
   user_current_paths: 0
   views_ui: 0
+  workflows: 0
   eca_form: 1
   views: 10
   standard: 1000

@@ -1,12 +1,17 @@
 uuid: 624ccb4a-150f-48e3-a794-e975d287de1f
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - group
+    - node
 id: ixp_user
 label: 'IXP User'
 weight: 6
 is_admin: null
 permissions:
+  - 'access group overview'
   - 'access user profiles'
   - 'cancel account'
   - 'change own username'
+  - 'view own unpublished content'

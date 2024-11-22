@@ -1,0 +1,21 @@
+uuid: dc9d4516-19a9-4fae-8c27-f90868ac9055
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tasks_skills
+    - node.type.progress_report
+id: node.progress_report.field_tasks_skills
+field_name: field_tasks_skills
+entity_type: node
+bundle: progress_report
+label: 'Tasks aligned with skills'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

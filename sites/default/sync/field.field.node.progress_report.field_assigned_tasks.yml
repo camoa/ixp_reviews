@@ -1,0 +1,24 @@
+uuid: 9e37995a-1576-4f21-8d6d-44fb56cc4057
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_assigned_tasks
+    - filter.format.basic_html
+    - node.type.progress_report
+  module:
+    - text
+id: node.progress_report.field_assigned_tasks
+field_name: field_assigned_tasks
+entity_type: node
+bundle: progress_report
+label: 'Assigned Tasks'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

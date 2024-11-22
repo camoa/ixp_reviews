@@ -3,10 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.ixp_engagement.field_blog_ack
     - field.field.node.ixp_engagement.field_case_number
-    - field.field.node.ixp_engagement.field_drupal_issues
+    - field.field.node.ixp_engagement.field_drupal_credit_ack
     - field.field.node.ixp_engagement.field_estimated_hours
-    - field.field.node.ixp_engagement.field_ixp_blog
     - field.field.node.ixp_engagement.field_ixp_user
     - field.field.node.ixp_engagement.field_mentor
     - field.field.node.ixp_engagement.field_proposed_work
@@ -14,7 +14,6 @@ dependencies:
     - node.type.ixp_engagement
   module:
     - datetime
-    - link
     - text
     - user
 id: node.ixp_engagement.default
@@ -22,6 +21,16 @@ targetEntityType: node
 bundle: ixp_engagement
 mode: default
 content:
+  field_blog_ack:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 110
+    region: content
   field_case_number:
     type: string
     label: above
@@ -30,17 +39,15 @@ content:
     third_party_settings: {  }
     weight: 109
     region: content
-  field_drupal_issues:
-    type: link
+  field_drupal_credit_ack:
+    type: boolean
     label: above
     settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
     third_party_settings: {  }
-    weight: 108
+    weight: 111
     region: content
   field_estimated_hours:
     type: number_integer
@@ -50,18 +57,6 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     weight: 105
-    region: content
-  field_ixp_blog:
-    type: link
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    weight: 107
     region: content
   field_ixp_user:
     type: entity_reference_label

@@ -1,0 +1,20 @@
+uuid: 56cc52df-deba-4d25-849b-9f9777d9c427
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_rate_paid
+field_name: field_rate_paid
+entity_type: node
+type: decimal
+settings:
+  precision: 13
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

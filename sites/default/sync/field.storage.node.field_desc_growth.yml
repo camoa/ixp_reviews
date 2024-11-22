@@ -1,0 +1,19 @@
+uuid: eebc31a3-51e0-4d0d-90e4-9d2b102d7005
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_desc_growth
+field_name: field_desc_growth
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

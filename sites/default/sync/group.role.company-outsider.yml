@@ -13,4 +13,11 @@ scope: outsider
 global_role: ixp_user
 group_type: company
 permissions:
+  - 'create group_node:progress_report entity'
   - 'join group'
+  - 'update own group_node:progress_report entity'
+  - 'view group'
+  - 'view group_node:ixp_engagement entity'
+  - 'view group_node:progress_report entity'
+  - 'view unpublished group_node:ixp_engagement entity'
+  - 'view unpublished group_node:progress_report entity'

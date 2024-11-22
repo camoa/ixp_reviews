@@ -1,0 +1,23 @@
+uuid: e70b643d-7972-4897-93fd-79f52b81e588
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rate_paid
+    - node.type.final_report_ixp
+id: node.final_report_ixp.field_rate_paid
+field_name: field_rate_paid
+entity_type: node
+bundle: final_report_ixp
+label: 'Rate paid?'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: $
+  suffix: 'Per Hour (USD)'
+field_type: decimal

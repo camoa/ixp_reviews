@@ -1,0 +1,17 @@
+uuid: 97523551-ce1c-48d4-90b3-59405f0228d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.company
+    - node.type.progress_report
+  module:
+    - gnode
+    - node
+id: company-eae8a10d2223a4c58adb47c7
+group_type: company
+content_plugin: 'group_node:progress_report'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false
