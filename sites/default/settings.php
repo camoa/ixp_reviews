@@ -856,6 +856,25 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # $settings['migrate_file_public_path'] = '';
 # $settings['migrate_file_private_path'] = '';
 
+    // Add different configurations based on the HTTP host value
+    switch ($http_host) {
+      case 'ixp.drupalhtx.space':
+        if (file_exists($app_root . '/' . $site_path . '/settings.stage.php')) {
+           include $app_root . '/' . $site_path . '/settings.stage.php';
+        }
+        break;
+      default:
+        if (file_exists($app_root . '/' . $site_path . '/settings.prod.php')) {
+           include $app_root . '/' . $site_path . '/settings.prod.php';
+        }
+        #$settings['config_sync_directory'] = '../config/default';
+        break;
+    }
+
+  }
+
+
+
 // Automatically generated include for settings managed by ddev.
 if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev.php')) {
   include __DIR__ . '/settings.ddev.php';
