@@ -8,7 +8,7 @@ dependencies:
   - 'drupal:views'
   - 'drupal:language'
 
-# Information added by Drupal.org packaging script on 2024-10-18
-version: '3.3.0'
+# Information added by Drupal.org packaging script on 2024-11-27
+version: '3.3.2'
 project: 'group'
-datestamp: 1729244040
+datestamp: 1732696836

@@ -55,4 +55,12 @@ class RelationHandlerTest extends GroupKernelTestBase {
     $this->assertSame($expected, $relation_manager->getPermissionProvider('entity_test_relation')->getAdminPermission(), $message);
   }
 
+  /**
+   * Tests that decorators are automatically set as non-shared services.
+   */
+  public function testDecoratorNotShared() {
+    $this->assertFalse($this->container->getDefinition('group.relation_handler_decorator.permission_provider.bar')->isShared());
+    $this->assertFalse($this->container->getDefinition('group.relation_handler_decorator.permission_provider.baz.node_relation')->isShared());
+  }
+
 }

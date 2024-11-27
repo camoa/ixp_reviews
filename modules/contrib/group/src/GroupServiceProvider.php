@@ -31,7 +31,7 @@ class GroupServiceProvider extends ServiceProviderBase {
       []
     );
 
-    $handlers = [
+    $handler_info = [
       'access_control' => 'Drupal\group\Plugin\Group\RelationHandler\EmptyAccessControl',
       'entity_reference' => 'Drupal\group\Plugin\Group\RelationHandler\EmptyEntityReference',
       'operation_provider' => 'Drupal\group\Plugin\Group\RelationHandler\EmptyOperationProvider',
@@ -40,7 +40,11 @@ class GroupServiceProvider extends ServiceProviderBase {
       'ui_text_provider' => 'Drupal\group\Plugin\Group\RelationHandler\EmptyUiTextProvider',
     ];
 
-    $services = [];
+    // Keep track of which services are expected to be decorated.
+    $decoratable_service_ids = array_map(fn($handler_id) => "group.relation_handler.$handler_id", array_keys($handler_info));
+
+    // Keep track of the services that represent each relation type's handlers.
+    $handlers = [];
     foreach ($discovery->getDefinitions() as $group_relation_type_id => $group_relation_type) {
       assert($group_relation_type instanceof GroupRelationTypeInterface);
       // Skip plugins that whose provider is not installed.
@@ -48,24 +52,41 @@ class GroupServiceProvider extends ServiceProviderBase {
         continue;
       }
 
-      foreach ($handlers as $handler => $handler_class) {
-        $service_name = "group.relation_handler.$handler.$group_relation_type_id";
+      foreach ($handler_info as $handler_id => $handler_class) {
+        $service_name = "group.relation_handler.$handler_id.$group_relation_type_id";
+        $decoratable_service_ids[] = $service_name;
+
+        // Either get the existing service or define it and pass it the default
+        // one to decorate.
         $definition = $container->has($service_name)
           ? $container->getDefinition($service_name)
-          // Define the service and pass it the default one to decorate.
-          : new Definition($handler_class, [new Reference("group.relation_handler.$handler")]);
+          : new Definition($handler_class, [new Reference("group.relation_handler.$handler_id")]);
 
-        // All handlers cannot be shared services.
+        // All handlers must be public and cannot be shared.
         $definition->setPublic(TRUE);
         $definition->setShared(FALSE);
         $container->setDefinition($service_name, $definition);
 
-        $services[$service_name] = new Reference($service_name);
+        $handlers[$service_name] = new Reference($service_name);
       }
     }
 
+    // Add the handlers to the relation type manager using a service locator.
     $manager = $container->getDefinition('group_relation_type.manager');
-    $manager->addArgument(ServiceLocatorTagPass::register($container, $services));
+    $manager->addArgument(ServiceLocatorTagPass::register($container, $handlers));
+
+    // Set the shared flag to FALSE for any service that decorates a base
+    // handler or a relation type specific handler. This is a quality-of-life
+    // feature so the handler system becomes easier to work with for people who
+    // don't know what the shared flag does.
+    foreach ($container->getDefinitions() as $definition) {
+      if ($decorated = $definition->getDecoratedService()) {
+        [$decorated_id] = $decorated;
+        if (in_array($decorated_id, $decoratable_service_ids, TRUE)) {
+          $definition->setShared(FALSE);
+        }
+      }
+    }
   }
 
 }

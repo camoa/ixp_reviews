@@ -6,6 +6,7 @@ gids
 
 # General list of terms.
 subconditions
+decoratable
 
 # Test cases.
 pagefoobarbaz
