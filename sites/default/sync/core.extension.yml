@@ -69,6 +69,7 @@ module:
   workflows: 0
   eca_form: 1
   views: 10
+  login_redirect_per_role: 1000
   standard: 1000
 theme:
   olivero: 0

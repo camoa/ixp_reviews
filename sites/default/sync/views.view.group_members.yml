@@ -2,6 +2,9 @@ uuid: 36c4375f-f1c3-4aa0-98d0-7fb88dd7aa01
 langcode: en
 status: true
 dependencies:
+  config:
+    - field.storage.group_relationship.group_roles
+    - field.storage.user.field_real_name
   module:
     - group
     - user
@@ -23,6 +26,69 @@ display:
     display_options:
       title: Members
       fields:
+        field_real_name:
+          id: field_real_name
+          table: user__field_real_name
+          field: field_real_name
+          relationship: gc__user
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Real Name'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         name:
           id: name
           table: users_field_data
@@ -34,7 +100,7 @@ display:
           entity_field: name
           plugin_id: field
           label: User
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -532,7 +598,7 @@ display:
       access:
         type: group_permission
         options:
-          group_permission: 'administer members'
+          group_permission: 'view group_membership relationship'
       cache:
         type: tag
         options: {  }
@@ -706,6 +772,7 @@ display:
         - user.group_permissions
       tags:
         - 'config:field.storage.group_relationship.group_roles'
+        - 'config:field.storage.user.field_real_name'
   page_1:
     id: page_1
     display_title: Page
@@ -735,3 +802,4 @@ display:
         - user.group_permissions
       tags:
         - 'config:field.storage.group_relationship.group_roles'
+        - 'config:field.storage.user.field_real_name'

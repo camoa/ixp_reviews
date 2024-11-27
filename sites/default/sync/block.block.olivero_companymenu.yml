@@ -1,0 +1,35 @@
+uuid: 6bf316d6-bd6f-4ae1-ba88-bd230400923b
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.company-menu
+  module:
+    - system
+    - user
+  theme:
+    - olivero
+id: olivero_companymenu
+theme: olivero
+region: sidebar
+weight: 0
+provider: null
+plugin: 'system_menu_block:company-menu'
+settings:
+  id: 'system_menu_block:company-menu'
+  label: 'Company menu'
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      company_admin: company_admin
+      company_member: company_member
+      ixp_user: ixp_user

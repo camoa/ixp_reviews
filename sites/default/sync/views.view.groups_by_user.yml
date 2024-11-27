@@ -3,7 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - user.role.authenticated
+    - user.role.company_admin
+    - user.role.company_member
+    - user.role.ixp_user
   module:
     - group
     - user
@@ -106,7 +108,9 @@ display:
         type: role
         options:
           role:
-            authenticated: authenticated
+            company_admin: company_admin
+            company_member: company_member
+            ixp_user: ixp_user
       cache:
         type: tag
         options: {  }
@@ -194,7 +198,19 @@ display:
           distinct: false
           replica: false
           query_tags: {  }
-      relationships: {  }
+      relationships:
+        gc__user:
+          id: gc__user
+          table: group_relationship_field_data
+          field: gc__user
+          relationship: none
+          group_type: group
+          admin_label: 'Group relationship User'
+          entity_type: group_relationship
+          plugin_id: group_relationship_to_entity
+          required: true
+          group_relation_plugins:
+            group_membership: group_membership
       header: {  }
       footer: {  }
       display_extenders: {  }

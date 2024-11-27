@@ -1,0 +1,58 @@
+login:
+  authenticated:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  content_editor:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  administrator:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  company_admin:
+    redirect_url: '/user/[current-user:uid]/groups'
+    allow_destination: false
+    weight: 0
+  company_member:
+    redirect_url: '/user/[current-user:uid]/groups'
+    allow_destination: false
+    weight: 0
+  ixp_user:
+    redirect_url: '/user/[current-user:uid]/groups'
+    allow_destination: false
+    weight: 0
+  ixp_reviewer:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+logout:
+  authenticated:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  content_editor:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  administrator:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  company_admin:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  company_member:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  ixp_user:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
+  ixp_reviewer:
+    redirect_url: ''
+    allow_destination: false
+    weight: 0
