@@ -1,0 +1,17 @@
+uuid: 0684f9e7-8624-4532-86e9-34f78941b9d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.company
+    - node.type.final_report_ixp
+  module:
+    - gnode
+    - node
+id: company-029aae32ee6110aaa7e8fec6
+group_type: company
+content_plugin: 'group_node:final_report_ixp'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

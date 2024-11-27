@@ -4,13 +4,13 @@ status: true
 dependencies:
   config:
     - group.type.company
-    - user.role.ixp_user
+    - user.role.authenticated
 id: company-outsider
 label: Outsider
 weight: -101
 admin: false
 scope: outsider
-global_role: ixp_user
+global_role: authenticated
 group_type: company
 permissions:
   - 'create group_node:progress_report entity'
