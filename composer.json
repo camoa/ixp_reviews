@@ -61,6 +61,7 @@
         "drupal/moderation_sidebar": "^1.7",
         "drupal/pathauto": "^1.11",
         "drupal/profile": "^1.11",
+        "drupal/radix": "~6",
         "drupal/redirect": "^1.9",
         "drupal/redirect_404": "^1.9",
         "drupal/robotstxt": "^1.6",
