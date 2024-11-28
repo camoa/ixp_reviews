@@ -12,10 +12,15 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         }
     ],
     "require": {
         "composer/installers": "^2.0",
+        "cweagans/composer-patches": "^1.7",
         "drupal-eca-recipe/eca_lib_0009": "dev-main",
         "drupal-eca-recipe/eca_lib_0010": "dev-main",
         "drupal-eca-recipe/eca_lib_0011": "dev-main",
@@ -70,7 +75,8 @@
         "drupal/stage_file_proxy": "^3.1",
         "drupal/upgrade_status": "^4.3",
         "drupal/user_current_paths": "^2.0",
-        "drush/drush": "^13"
+        "drush/drush": "^13",
+        "oomphinc/composer-installers-extender": "^2.0"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -80,9 +86,11 @@
     "config": {
         "allow-plugins": {
             "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
             "drupal/core-composer-scaffold": true,
-            "phpstan/extension-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "oomphinc/composer-installers-extender": true,
+            "phpstan/extension-installer": true
         },
         "sort-packages": true
     },
@@ -101,7 +109,9 @@
                 "type:drupal-core"
             ],
             "libraries/{$name}": [
-                "type:drupal-library"
+                "type:drupal-library",
+                "bower-asset",
+                "npm-asset"
             ],
             "modules/contrib/{$name}": [
                 "type:drupal-module"
@@ -125,11 +135,25 @@
                 "type:drupal-custom-theme"
             ]
         },
+        "installer-types": [
+            "bower-asset",
+            "npm-asset"
+        ],
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "patches": {
+
+        },
         "drupal-core-project-message": {
             "include-keys": [
                 "homepage",
                 "support"
             ]
         }
+    },
+    "scripts": {
+
     }
+
 }
