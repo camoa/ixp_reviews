@@ -1,0 +1,25 @@
+uuid: f173d848-3309-4bb0-a69d-fc03b7bfec3f
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.progress_report_for_case
+  module:
+    - views
+  theme:
+    - radix
+id: radix_views_block__progress_report_for_case_block_2
+theme: radix
+region: navbar_branding
+weight: -7
+provider: null
+plugin: 'views_block:progress_report_for_case-block_2'
+settings:
+  id: 'views_block:progress_report_for_case-block_2'
+  label: ''
+  label_display: visible
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+visibility: {  }

@@ -20,10 +20,10 @@ targetEntityType: node
 bundle: ixp_engagement
 mode: teaser
 content:
-  links:
+  content_moderation_control:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
 hidden:
   field_blog_ack: true
@@ -34,3 +34,4 @@ hidden:
   field_mentor: true
   field_proposed_work: true
   field_start_date: true
+  links: true

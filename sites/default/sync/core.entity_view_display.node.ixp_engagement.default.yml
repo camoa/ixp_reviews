@@ -21,6 +21,11 @@ targetEntityType: node
 bundle: ixp_engagement
 mode: default
 content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
   field_blog_ack:
     type: boolean
     label: above

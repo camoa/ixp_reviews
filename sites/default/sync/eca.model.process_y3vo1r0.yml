@@ -1,0 +1,58 @@
+uuid: 1712b7c4-d0b0-4f3b-aa69-5a727f7982c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - eca.eca.process_y3vo1r0
+id: process_y3vo1r0
+label: 'Block test'
+tags:
+  - untagged
+documentation: ''
+filename: ''
+modeldata: |
+  <?xml version="1.0" encoding="UTF-8"?>
+  <bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:qa="http://some-company/schema/bpmn/qa" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+    <bpmn2:process id="Process_y3VO1r0" name="Block test" isExecutable="true">
+      <bpmn2:startEvent id="Event_1cqxfhq" camunda:modelerTemplate="org.drupal.event.eca_render:block">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_render:block" />
+          </camunda:properties>
+          <camunda:field name="block_name">
+            <camunda:string>has enough reports</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:outgoing>Flow_1ytopfg</bpmn2:outgoing>
+      </bpmn2:startEvent>
+      <bpmn2:sequenceFlow id="Flow_1ytopfg" sourceRef="Event_1cqxfhq" targetRef="Activity_08l17h5" />
+      <bpmn2:task id="Activity_08l17h5" camunda:modelerTemplate="org.drupal.action.action_message_action">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="action_message_action" />
+          </camunda:properties>
+          <camunda:field name="message">
+            <camunda:string>Block rendered</camunda:string>
+          </camunda:field>
+          <camunda:field name="replace_tokens">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1ytopfg</bpmn2:incoming>
+      </bpmn2:task>
+    </bpmn2:process>
+    <bpmndi:BPMNDiagram id="sid-75c246dd-fbfb-481f-ae22-971493eed71f">
+      <bpmndi:BPMNPlane id="sid-82bc8abb-3e1e-4d56-a1d9-c67599280c42" bpmnElement="Process_y3VO1r0">
+        <bpmndi:BPMNShape id="Event_12fs3xl_di" bpmnElement="Event_1cqxfhq">
+          <dc:Bounds x="332" y="162" width="36" height="36" />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_15bg4ha_di" bpmnElement="Activity_08l17h5">
+          <dc:Bounds x="420" y="140" width="100" height="80" />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNEdge id="Flow_1ytopfg_di" bpmnElement="Flow_1ytopfg">
+          <di:waypoint x="368" y="180" />
+          <di:waypoint x="420" y="180" />
+        </bpmndi:BPMNEdge>
+      </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+  </bpmn2:definitions>

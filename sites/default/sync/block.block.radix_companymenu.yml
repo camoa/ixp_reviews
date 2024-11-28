@@ -1,0 +1,35 @@
+uuid: 03b1551e-8582-4ba6-8127-5c85eac31865
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.company-menu
+  module:
+    - system
+    - user
+  theme:
+    - radix
+id: radix_companymenu
+theme: radix
+region: navbar_branding
+weight: 0
+provider: null
+plugin: 'system_menu_block:company-menu'
+settings:
+  id: 'system_menu_block:company-menu'
+  label: 'Company menu'
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      company_admin: company_admin
+      company_member: company_member
+      ixp_user: ixp_user

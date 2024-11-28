@@ -1,0 +1,25 @@
+uuid: d22c5974-d6c8-4f96-9485-b4d60ac9524a
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - ixp_radix
+id: ixp_radix_useraccountmenu
+theme: ixp_radix
+region: navbar_right
+weight: 0
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }
