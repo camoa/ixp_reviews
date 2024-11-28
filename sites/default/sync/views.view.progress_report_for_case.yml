@@ -306,6 +306,21 @@ display:
     display_plugin: block
     position: 1
     display_options:
+      title: 'Progress reports'
+      defaults:
+        title: false
+        header: false
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: false
+          content: 'Displaying @start - @end of @total'
       display_extenders: {  }
       block_description: 'Progress report by case'
     cache_metadata:
@@ -324,7 +339,7 @@ display:
     display_plugin: block
     position: 2
     display_options:
-      title: 'Final Progress report for case'
+      title: 'Final Reports'
       filters:
         status:
           id: status

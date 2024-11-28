@@ -10,7 +10,7 @@ dependencies:
     - olivero
 id: olivero_views_block__progress_report_for_case_block_2
 theme: olivero
-region: content_below
+region: sidebar
 weight: -7
 provider: null
 plugin: 'views_block:progress_report_for_case-block_2'
