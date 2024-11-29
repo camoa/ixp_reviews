@@ -1,0 +1,126 @@
+uuid: 89a5efba-c8b5-423c-b8ca-c70ce6c0a8fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.eca_content_count
+  module:
+    - eca_base
+    - eca_content
+    - eca_render
+    - eca_tamper
+    - eca_user
+    - eca_views
+_core:
+  default_config_hash: JFEqjonI2SxvnXG82OynjKAtnYCLDCIyN_I1o5Ou2ak
+id: eca_lib_0034
+modeller: bpmn_io
+label: 'ECA and Views'
+version: v1
+weight: 0
+events:
+  Event_0uvfefo:
+    plugin: 'eca_base:eca_custom'
+    label: 'Custom event'
+    configuration:
+      event_id: views
+    successors:
+      -
+        id: Activity_0ymgsfx
+        condition: ''
+  Event_1un347t:
+    plugin: 'content_entity:custom'
+    label: 'Custom event Print View Result'
+    configuration:
+      event_id: 'Print View Result'
+    successors:
+      -
+        id: Activity_1uko3v6
+        condition: ''
+conditions: {  }
+gateways: {  }
+actions:
+  Activity_0ymgsfx:
+    plugin: eca_switch_account
+    label: 'Switch to user 1'
+    configuration:
+      user_id: '1'
+    successors:
+      -
+        id: Activity_1bun8hd
+        condition: ''
+      -
+        id: Activity_0llxtxx
+        condition: ''
+  Activity_0llxtxx:
+    plugin: eca_views_query
+    label: 'Query ECA Content Count'
+    configuration:
+      token_name: nodes
+      view_id: eca_content_count
+      display_id: attachment_2
+      arguments: article
+    successors:
+      -
+        id: Activity_1wday0m
+        condition: ''
+  Activity_1wday0m:
+    plugin: eca_trigger_content_entity_custom_event
+    label: 'Trigger Print View Result'
+    configuration:
+      event_id: 'Print View Result'
+      tokens: ''
+      object: nodes
+    successors: {  }
+  Activity_1uko3v6:
+    plugin: action_message_action
+    label: Message
+    configuration:
+      message: '[entity:nid]: [entity:title]'
+      replace_tokens: true
+    successors: {  }
+  Activity_0152g4t:
+    plugin: action_message_action
+    label: Message
+    configuration:
+      message: 'Result from view: [nodes]'
+      replace_tokens: true
+    successors: {  }
+  Activity_1bun8hd:
+    plugin: 'eca_render_views:views'
+    label: 'Render ECA Content Count'
+    configuration:
+      view_id: eca_content_count
+      display_id: attachment_1
+      arguments: article
+      name: ''
+      token_name: nodes
+      weight: ''
+      mode: append
+    successors:
+      -
+        id: Activity_008ngs2
+        condition: ''
+  Activity_0o10ns0:
+    plugin: 'eca_tamper:trim'
+    label: 'Trim the result'
+    configuration:
+      character: ''
+      side: trim
+      eca_data: '[nodes]'
+      eca_token_name: nodes
+    successors:
+      -
+        id: Activity_0152g4t
+        condition: ''
+  Activity_008ngs2:
+    plugin: 'eca_tamper:strip_tags'
+    label: 'Strip tags'
+    configuration:
+      allowed_tags: ''
+      eca_data: '[nodes]'
+      eca_token_name: nodes
+    successors:
+      -
+        id: Activity_0o10ns0
+        condition: ''

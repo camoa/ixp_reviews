@@ -1,0 +1,21 @@
+uuid: d23e3966-d5de-4f13-bcdc-60c6a429f8e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_end_date
+    - node.type.ixp_engagement
+  module:
+    - datetime
+id: node.ixp_engagement.field_end_date
+field_name: field_end_date
+entity_type: node
+bundle: ixp_engagement
+label: 'End Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime
