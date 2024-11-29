@@ -166,7 +166,7 @@ actions:
         condition: ''
   Activity_09h2gc6:
     plugin: 'eca_tamper:strip_tags'
-    label: 'strip mtags'
+    label: 'strip tags'
     configuration:
       allowed_tags: ''
       eca_data: '[total_progress_reports]'
@@ -185,7 +185,7 @@ actions:
       eca_token_name: total_progress_reports
     successors:
       -
-        id: Gateway_0bv6177
+        id: Activity_0pw5sy0
         condition: ''
   Activity_121dl0o:
     plugin: 'eca_tamper:strtotime'
@@ -296,3 +296,13 @@ actions:
         Expected reports: [progress_reports_needed] - Numebr of reports: 
          [total_progress_reports] - There are  notenough progress reports
     successors: {  }
+  Activity_0pw5sy0:
+    plugin: 'eca_tamper:cast_to_int'
+    label: 'Make integer'
+    configuration:
+      eca_data: '[total_progress_reports]'
+      eca_token_name: total_progress_reports
+    successors:
+      -
+        id: Gateway_0bv6177
+        condition: ''

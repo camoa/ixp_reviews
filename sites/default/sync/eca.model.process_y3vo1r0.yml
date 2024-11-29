@@ -112,7 +112,7 @@ modeldata: |
         <bpmn2:outgoing>Flow_1h4anq8</bpmn2:outgoing>
       </bpmn2:task>
       <bpmn2:exclusiveGateway id="Gateway_0bv6177" name="Has end date?">
-        <bpmn2:incoming>Flow_1axr13t</bpmn2:incoming>
+        <bpmn2:incoming>Flow_1mu9vqn</bpmn2:incoming>
         <bpmn2:outgoing>Flow_0xhb18p</bpmn2:outgoing>
         <bpmn2:outgoing>Flow_16zvfug</bpmn2:outgoing>
       </bpmn2:exclusiveGateway>
@@ -135,7 +135,7 @@ modeldata: |
       </bpmn2:sequenceFlow>
       <bpmn2:sequenceFlow id="Flow_1h4anq8" sourceRef="Activity_1ikxjyf" targetRef="Activity_121dl0o" />
       <bpmn2:sequenceFlow id="Flow_08o9d20" sourceRef="Activity_09h2gc6" targetRef="Activity_0vil4m1" />
-      <bpmn2:task id="Activity_09h2gc6" name="strip mtags" camunda:modelerTemplate="org.drupal.action.eca_tamper:strip_tags">
+      <bpmn2:task id="Activity_09h2gc6" name="strip tags" camunda:modelerTemplate="org.drupal.action.eca_tamper:strip_tags">
         <bpmn2:extensionElements>
           <camunda:properties>
             <camunda:property name="pluginid" value="eca_tamper:strip_tags" />
@@ -174,7 +174,7 @@ modeldata: |
         <bpmn2:incoming>Flow_08o9d20</bpmn2:incoming>
         <bpmn2:outgoing>Flow_1axr13t</bpmn2:outgoing>
       </bpmn2:task>
-      <bpmn2:sequenceFlow id="Flow_1axr13t" sourceRef="Activity_0vil4m1" targetRef="Gateway_0bv6177" />
+      <bpmn2:sequenceFlow id="Flow_1axr13t" sourceRef="Activity_0vil4m1" targetRef="Activity_0pw5sy0" />
       <bpmn2:startEvent id="Event_1cqxfhq" name="When engagement is viewed" camunda:modelerTemplate="org.drupal.event.content_entity:view">
         <bpmn2:extensionElements>
           <camunda:properties>
@@ -512,6 +512,22 @@ modeldata: |
         </bpmn2:extensionElements>
         <bpmn2:incoming>Flow_1qn8y07</bpmn2:incoming>
       </bpmn2:task>
+      <bpmn2:task id="Activity_0pw5sy0" name="Make integer" camunda:modelerTemplate="org.drupal.action.eca_tamper:cast_to_int">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_tamper:cast_to_int" />
+          </camunda:properties>
+          <camunda:field name="eca_data">
+            <camunda:string>[total_progress_reports]</camunda:string>
+          </camunda:field>
+          <camunda:field name="eca_token_name">
+            <camunda:string>total_progress_reports</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1axr13t</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1mu9vqn</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_1mu9vqn" sourceRef="Activity_0pw5sy0" targetRef="Gateway_0bv6177" />
     </bpmn2:process>
     <bpmndi:BPMNDiagram id="sid-75c246dd-fbfb-481f-ae22-971493eed71f">
       <bpmndi:BPMNPlane id="sid-82bc8abb-3e1e-4d56-a1d9-c67599280c42" bpmnElement="Process_y3VO1r0">
@@ -594,6 +610,10 @@ modeldata: |
         <bpmndi:BPMNShape id="Activity_1rqcflu_di" bpmnElement="Activity_18qz3wq">
           <dc:Bounds x="1210" y="430" width="100" height="80" />
         </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_0pw5sy0_di" bpmnElement="Activity_0pw5sy0">
+          <dc:Bounds x="470" y="240" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
         <bpmndi:BPMNEdge id="Flow_1ytopfg_di" bpmnElement="Flow_1ytopfg">
           <di:waypoint x="278" y="180" />
           <di:waypoint x="380" y="180" />
@@ -635,8 +655,9 @@ modeldata: |
         </bpmndi:BPMNEdge>
         <bpmndi:BPMNEdge id="Flow_1axr13t_di" bpmnElement="Flow_1axr13t">
           <di:waypoint x="530" y="90" />
-          <di:waypoint x="530" y="180" />
-          <di:waypoint x="585" y="180" />
+          <di:waypoint x="530" y="165" />
+          <di:waypoint x="500" y="165" />
+          <di:waypoint x="500" y="240" />
         </bpmndi:BPMNEdge>
         <bpmndi:BPMNEdge id="Flow_0gekohk_di" bpmnElement="Flow_0gekohk">
           <di:waypoint x="278" y="180" />
@@ -720,6 +741,11 @@ modeldata: |
           <di:waypoint x="1363" y="420" />
           <di:waypoint x="1363" y="390" />
           <di:waypoint x="1310" y="390" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1mu9vqn_di" bpmnElement="Flow_1mu9vqn">
+          <di:waypoint x="560" y="240" />
+          <di:waypoint x="580" y="240" />
+          <di:waypoint x="580" y="205" />
         </bpmndi:BPMNEdge>
       </bpmndi:BPMNPlane>
     </bpmndi:BPMNDiagram>

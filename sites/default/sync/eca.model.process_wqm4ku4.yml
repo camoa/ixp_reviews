@@ -1,0 +1,332 @@
+uuid: 30bb84f2-16fa-40dd-abc7-9dba3de3ba9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - eca.eca.process_wqm4ku4
+id: process_wqm4ku4
+label: 'Are enought final reports'
+tags:
+  - untagged
+documentation: ''
+filename: ''
+modeldata: |
+  <?xml version="1.0" encoding="UTF-8"?>
+  <bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:qa="http://some-company/schema/bpmn/qa" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+    <bpmn2:process id="Process_wQM4Ku4" name="Are enought final reports" isExecutable="true">
+      <bpmn2:startEvent id="Event_1mxe92v" camunda:modelerTemplate="org.drupal.event.content_entity:view">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="content_entity:view" />
+          </camunda:properties>
+          <camunda:field name="type">
+            <camunda:string>node ixp_engagement</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:outgoing>Flow_1kjsqdw</bpmn2:outgoing>
+      </bpmn2:startEvent>
+      <bpmn2:sequenceFlow id="Flow_1kjsqdw" camunda:modelerTemplate="org.drupal.condition.eca_entity_field_value" sourceRef="Event_1mxe92v" targetRef="Activity_1dlsw2q">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_entity_field_value" />
+          </camunda:properties>
+          <camunda:field name="field_name">
+            <camunda:string>moderation_state</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>equal</camunda:string>
+          </camunda:field>
+          <camunda:field name="expected_value">
+            <camunda:string>final_review</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="entity">
+            <camunda:string>node</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:task id="Activity_1dlsw2q" name="read view count final reports" camunda:modelerTemplate="org.drupal.action.eca_render_views:views">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_render_views:views" />
+          </camunda:properties>
+          <camunda:field name="view_id">
+            <camunda:string>duplicate_of_count_progress_reports</camunda:string>
+          </camunda:field>
+          <camunda:field name="display_id">
+            <camunda:string>default</camunda:string>
+          </camunda:field>
+          <camunda:field name="arguments">
+            <camunda:string></camunda:string>
+          </camunda:field>
+          <camunda:field name="name">
+            <camunda:string></camunda:string>
+          </camunda:field>
+          <camunda:field name="token_name">
+            <camunda:string>total_final_reports</camunda:string>
+          </camunda:field>
+          <camunda:field name="weight">
+            <camunda:string></camunda:string>
+          </camunda:field>
+          <camunda:field name="mode">
+            <camunda:string>set:clear</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1kjsqdw</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0ewvklm</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:task id="Activity_0qvhgqn" name="strip tags" camunda:modelerTemplate="org.drupal.action.eca_tamper:strip_tags">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_tamper:strip_tags" />
+          </camunda:properties>
+          <camunda:field name="eca_data">
+            <camunda:string>[total_final_reports]</camunda:string>
+          </camunda:field>
+          <camunda:field name="allowed_tags">
+            <camunda:string></camunda:string>
+          </camunda:field>
+          <camunda:field name="eca_token_name">
+            <camunda:string>total_final_reports</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0ewvklm</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0r2vd0m</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0ewvklm" sourceRef="Activity_1dlsw2q" targetRef="Activity_0qvhgqn" />
+      <bpmn2:task id="Activity_1988u8n" name="Strip all" camunda:modelerTemplate="org.drupal.action.eca_tamper:trim">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_tamper:trim" />
+          </camunda:properties>
+          <camunda:field name="eca_data">
+            <camunda:string>[total_final_reports]</camunda:string>
+          </camunda:field>
+          <camunda:field name="character">
+            <camunda:string></camunda:string>
+          </camunda:field>
+          <camunda:field name="side">
+            <camunda:string>trim</camunda:string>
+          </camunda:field>
+          <camunda:field name="eca_token_name">
+            <camunda:string>total_final_reports</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0r2vd0m</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1epafca</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0r2vd0m" sourceRef="Activity_0qvhgqn" targetRef="Activity_1988u8n" />
+      <bpmn2:task id="Activity_1s8lsr5" name="cast to integer" camunda:modelerTemplate="org.drupal.action.eca_tamper:cast_to_int">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_tamper:cast_to_int" />
+          </camunda:properties>
+          <camunda:field name="eca_data">
+            <camunda:string>[total_final_reports]</camunda:string>
+          </camunda:field>
+          <camunda:field name="eca_token_name">
+            <camunda:string>total_final_reports</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1epafca</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0l5vv9s</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_1epafca" sourceRef="Activity_1988u8n" targetRef="Activity_1s8lsr5" />
+      <bpmn2:exclusiveGateway id="Gateway_0mcb69b" name="Are there enough final reports?">
+        <bpmn2:incoming>Flow_0l5vv9s</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0z7ao1h</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_1jkdjxa</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_1a8rdip</bpmn2:outgoing>
+      </bpmn2:exclusiveGateway>
+      <bpmn2:sequenceFlow id="Flow_0l5vv9s" sourceRef="Activity_1s8lsr5" targetRef="Gateway_0mcb69b" />
+      <bpmn2:task id="Activity_1qeqexi" name="Enough" camunda:modelerTemplate="org.drupal.action.action_message_action">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="action_message_action" />
+          </camunda:properties>
+          <camunda:field name="message">
+            <camunda:string>Current final reports: [total_final_reports] - There are enough reports</camunda:string>
+          </camunda:field>
+          <camunda:field name="replace_tokens">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0z7ao1h</bpmn2:incoming>
+        <bpmn2:incoming>Flow_1a8rdip</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0z7ao1h" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Gateway_0mcb69b" targetRef="Activity_1qeqexi">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar" />
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[total_final_reports]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>equal</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>2</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:task id="Activity_1gt11ip" name="Not enough" camunda:modelerTemplate="org.drupal.action.eca_error_message">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_error_message" />
+          </camunda:properties>
+          <camunda:field name="message">
+            <camunda:string>Current Final reports: [total_final_reports] - There are not enough final reports</camunda:string>
+          </camunda:field>
+          <camunda:field name="replace_tokens">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1jkdjxa</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_1jkdjxa" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Gateway_0mcb69b" targetRef="Activity_1gt11ip">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar" />
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[total_final_reports]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>lessthan</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>2</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:sequenceFlow id="Flow_1a8rdip" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Gateway_0mcb69b" targetRef="Activity_1qeqexi">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar" />
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[total_final_reports]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>greaterthan</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>2</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+    </bpmn2:process>
+    <bpmndi:BPMNDiagram id="sid-a9490b3c-2684-4790-a2fb-6c72cec9aa15">
+      <bpmndi:BPMNPlane id="sid-19893cba-d594-4788-8942-afaffac65960" bpmnElement="Process_wQM4Ku4">
+        <bpmndi:BPMNShape id="Event_1mxe92v_di" bpmnElement="Event_1mxe92v">
+          <dc:Bounds x="312" y="172" width="36" height="36" />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_0qvhgqn_di" bpmnElement="Activity_0qvhgqn">
+          <dc:Bounds x="560" y="300" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1988u8n_di" bpmnElement="Activity_1988u8n">
+          <dc:Bounds x="720" y="300" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1s8lsr5_di" bpmnElement="Activity_1s8lsr5">
+          <dc:Bounds x="880" y="300" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1dlsw2q_di" bpmnElement="Activity_1dlsw2q">
+          <dc:Bounds x="390" y="150" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Gateway_0mcb69b_di" bpmnElement="Gateway_0mcb69b" isMarkerVisible="true">
+          <dc:Bounds x="1045" y="315" width="50" height="50" />
+          <bpmndi:BPMNLabel>
+            <dc:Bounds x="1104.5" y="326" width="85" height="27" />
+          </bpmndi:BPMNLabel>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1gt11ip_di" bpmnElement="Activity_1gt11ip">
+          <dc:Bounds x="1160" y="370" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1qeqexi_di" bpmnElement="Activity_1qeqexi">
+          <dc:Bounds x="1160" y="230" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNEdge id="Flow_1kjsqdw_di" bpmnElement="Flow_1kjsqdw">
+          <di:waypoint x="348" y="190" />
+          <di:waypoint x="390" y="190" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0ewvklm_di" bpmnElement="Flow_0ewvklm">
+          <di:waypoint x="490" y="190" />
+          <di:waypoint x="525" y="190" />
+          <di:waypoint x="525" y="340" />
+          <di:waypoint x="560" y="340" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0r2vd0m_di" bpmnElement="Flow_0r2vd0m">
+          <di:waypoint x="660" y="340" />
+          <di:waypoint x="720" y="340" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1epafca_di" bpmnElement="Flow_1epafca">
+          <di:waypoint x="820" y="340" />
+          <di:waypoint x="880" y="340" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0l5vv9s_di" bpmnElement="Flow_0l5vv9s">
+          <di:waypoint x="980" y="340" />
+          <di:waypoint x="1045" y="340" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0z7ao1h_di" bpmnElement="Flow_0z7ao1h">
+          <di:waypoint x="1070" y="315" />
+          <di:waypoint x="1070" y="270" />
+          <di:waypoint x="1160" y="270" />
+          <bpmndi:BPMNLabel>
+            <dc:Bounds x="1081" y="290" width="8" height="14" />
+          </bpmndi:BPMNLabel>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1jkdjxa_di" bpmnElement="Flow_1jkdjxa">
+          <di:waypoint x="1070" y="365" />
+          <di:waypoint x="1070" y="410" />
+          <di:waypoint x="1160" y="410" />
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1a8rdip_di" bpmnElement="Flow_1a8rdip">
+          <di:waypoint x="1070" y="315" />
+          <di:waypoint x="1070" y="270" />
+          <di:waypoint x="1160" y="270" />
+        </bpmndi:BPMNEdge>
+      </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+  </bpmn2:definitions>

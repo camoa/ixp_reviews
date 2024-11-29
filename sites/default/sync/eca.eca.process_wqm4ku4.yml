@@ -1,0 +1,141 @@
+uuid: cae7958a-fe32-45d7-96f5-fdf3ceb6babb
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.ixp_engagement
+    - views.view.duplicate_of_count_progress_reports
+  module:
+    - eca_base
+    - eca_content
+    - eca_render
+    - eca_tamper
+id: process_wqm4ku4
+modeller: bpmn_io
+label: 'Are enought final reports'
+version: ''
+weight: 0
+events:
+  Event_1mxe92v:
+    plugin: 'content_entity:view'
+    label: Event_1mxe92v
+    configuration:
+      type: 'node ixp_engagement'
+    successors:
+      -
+        id: Activity_1dlsw2q
+        condition: Flow_1kjsqdw
+conditions:
+  Flow_1kjsqdw:
+    plugin: eca_entity_field_value
+    configuration:
+      negate: false
+      case: false
+      expected_value: final_review
+      field_name: moderation_state
+      operator: equal
+      type: value
+      entity: node
+  Flow_0z7ao1h:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[total_final_reports]'
+      right: '2'
+      operator: equal
+      type: value
+  Flow_1jkdjxa:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[total_final_reports]'
+      right: '2'
+      operator: lessthan
+      type: value
+  Flow_1a8rdip:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[total_final_reports]'
+      right: '2'
+      operator: greaterthan
+      type: value
+gateways:
+  Gateway_0mcb69b:
+    type: 0
+    successors:
+      -
+        id: Activity_1qeqexi
+        condition: Flow_0z7ao1h
+      -
+        id: Activity_1gt11ip
+        condition: Flow_1jkdjxa
+      -
+        id: Activity_1qeqexi
+        condition: Flow_1a8rdip
+actions:
+  Activity_1dlsw2q:
+    plugin: 'eca_render_views:views'
+    label: 'read view count final reports'
+    configuration:
+      view_id: duplicate_of_count_progress_reports
+      display_id: default
+      arguments: ''
+      name: ''
+      token_name: total_final_reports
+      weight: ''
+      mode: 'set:clear'
+    successors:
+      -
+        id: Activity_0qvhgqn
+        condition: ''
+  Activity_0qvhgqn:
+    plugin: 'eca_tamper:strip_tags'
+    label: 'strip tags'
+    configuration:
+      allowed_tags: ''
+      eca_data: '[total_final_reports]'
+      eca_token_name: total_final_reports
+    successors:
+      -
+        id: Activity_1988u8n
+        condition: ''
+  Activity_1988u8n:
+    plugin: 'eca_tamper:trim'
+    label: 'Strip all'
+    configuration:
+      character: ''
+      side: trim
+      eca_data: '[total_final_reports]'
+      eca_token_name: total_final_reports
+    successors:
+      -
+        id: Activity_1s8lsr5
+        condition: ''
+  Activity_1s8lsr5:
+    plugin: 'eca_tamper:cast_to_int'
+    label: 'cast to integer'
+    configuration:
+      eca_data: '[total_final_reports]'
+      eca_token_name: total_final_reports
+    successors:
+      -
+        id: Gateway_0mcb69b
+        condition: ''
+  Activity_1qeqexi:
+    plugin: action_message_action
+    label: Enough
+    configuration:
+      message: 'Current final reports: [total_final_reports] - There are enough reports'
+      replace_tokens: true
+    successors: {  }
+  Activity_1gt11ip:
+    plugin: eca_error_message
+    label: 'Not enough'
+    configuration:
+      message: 'Current Final reports: [total_final_reports] - There are not enough final reports'
+      replace_tokens: true
+    successors: {  }
