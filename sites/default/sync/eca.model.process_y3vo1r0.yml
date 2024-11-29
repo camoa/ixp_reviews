@@ -487,7 +487,8 @@ modeldata: |
             <camunda:property name="pluginid" value="action_message_action" />
           </camunda:properties>
           <camunda:field name="message">
-            <camunda:string>There are enough progress reports</camunda:string>
+            <camunda:string>Expected reports: [progress_reports_needed] - Numebr of reports: 
+   [total_progress_reports] - There are enough progress reports</camunda:string>
           </camunda:field>
           <camunda:field name="replace_tokens">
             <camunda:string>no</camunda:string>
@@ -502,7 +503,8 @@ modeldata: |
             <camunda:property name="pluginid" value="eca_error_message" />
           </camunda:properties>
           <camunda:field name="message">
-            <camunda:string>There are not enough progress reports</camunda:string>
+            <camunda:string>Expected reports: [progress_reports_needed] - Numebr of reports: 
+   [total_progress_reports] - There are  notenough progress reports</camunda:string>
           </camunda:field>
           <camunda:field name="replace_tokens">
             <camunda:string>no</camunda:string>
@@ -513,15 +515,23 @@ modeldata: |
     </bpmn2:process>
     <bpmndi:BPMNDiagram id="sid-75c246dd-fbfb-481f-ae22-971493eed71f">
       <bpmndi:BPMNPlane id="sid-82bc8abb-3e1e-4d56-a1d9-c67599280c42" bpmnElement="Process_y3VO1r0">
-        <bpmndi:BPMNShape id="Event_1v7w8r5_di" bpmnElement="Event_1cqxfhq">
-          <dc:Bounds x="242" y="162" width="36" height="36" />
-          <bpmndi:BPMNLabel>
-            <dc:Bounds x="225" y="205" width="73" height="40" />
-          </bpmndi:BPMNLabel>
-        </bpmndi:BPMNShape>
         <bpmndi:BPMNShape id="Activity_1lsqqqg_di" bpmnElement="Activity_08l17h5">
           <dc:Bounds x="380" y="140" width="100" height="80" />
           <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_0zovu4b_di" bpmnElement="Activity_0zovu4b">
+          <dc:Bounds x="690" y="60" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1ikxjyf_di" bpmnElement="Activity_1ikxjyf">
+          <dc:Bounds x="690" y="240" width="100" height="80" />
+          <bpmndi:BPMNLabel />
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Gateway_0bv6177_di" bpmnElement="Gateway_0bv6177" isMarkerVisible="true">
+          <dc:Bounds x="585" y="155" width="50" height="50" />
+          <bpmndi:BPMNLabel>
+            <dc:Bounds x="645" y="173" width="72" height="14" />
+          </bpmndi:BPMNLabel>
         </bpmndi:BPMNShape>
         <bpmndi:BPMNShape id="Activity_1py0lvj_di" bpmnElement="Activity_09h2gc6">
           <dc:Bounds x="380" y="10" width="100" height="80" />
@@ -531,19 +541,11 @@ modeldata: |
           <dc:Bounds x="520" y="10" width="100" height="80" />
           <bpmndi:BPMNLabel />
         </bpmndi:BPMNShape>
-        <bpmndi:BPMNShape id="Gateway_0bv6177_di" bpmnElement="Gateway_0bv6177" isMarkerVisible="true">
-          <dc:Bounds x="585" y="155" width="50" height="50" />
+        <bpmndi:BPMNShape id="Event_1v7w8r5_di" bpmnElement="Event_1cqxfhq">
+          <dc:Bounds x="242" y="162" width="36" height="36" />
           <bpmndi:BPMNLabel>
-            <dc:Bounds x="645" y="173" width="72" height="14" />
+            <dc:Bounds x="225" y="205" width="73" height="40" />
           </bpmndi:BPMNLabel>
-        </bpmndi:BPMNShape>
-        <bpmndi:BPMNShape id="Activity_0zovu4b_di" bpmnElement="Activity_0zovu4b">
-          <dc:Bounds x="690" y="60" width="100" height="80" />
-          <bpmndi:BPMNLabel />
-        </bpmndi:BPMNShape>
-        <bpmndi:BPMNShape id="Activity_1ikxjyf_di" bpmnElement="Activity_1ikxjyf">
-          <dc:Bounds x="690" y="240" width="100" height="80" />
-          <bpmndi:BPMNLabel />
         </bpmndi:BPMNShape>
         <bpmndi:BPMNShape id="Activity_121dl0o_di" bpmnElement="Activity_121dl0o">
           <dc:Bounds x="850" y="140" width="100" height="80" />

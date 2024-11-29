@@ -283,12 +283,16 @@ actions:
     label: 'Enough reports message'
     configuration:
       replace_tokens: false
-      message: 'There are enough progress reports'
+      message: |-
+        Expected reports: [progress_reports_needed] - Numebr of reports: 
+         [total_progress_reports] - There are enough progress reports
     successors: {  }
   Activity_18qz3wq:
     plugin: eca_error_message
     label: 'Not Enough reports message'
     configuration:
       replace_tokens: false
-      message: 'There are not enough progress reports'
+      message: |-
+        Expected reports: [progress_reports_needed] - Numebr of reports: 
+         [total_progress_reports] - There are  notenough progress reports
     successors: {  }
