@@ -1,0 +1,22 @@
+uuid: 8cc570f4-2f16-416c-885a-44980dc37edd
+langcode: en
+status: true
+dependencies:
+  module:
+    - group
+id: group
+label: 'Group '
+type: 'canonical_entities:group'
+pattern: '[group:title]'
+selection_criteria:
+  b445b860-1b3b-413f-b6fa-82c75e37bd3f:
+    id: 'entity_bundle:group'
+    negate: false
+    uuid: b445b860-1b3b-413f-b6fa-82c75e37bd3f
+    context_mapping:
+      group: group
+    bundles:
+      company: company
+selection_logic: and
+weight: -5
+relationships: {  }

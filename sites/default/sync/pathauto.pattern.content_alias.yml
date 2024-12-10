@@ -1,0 +1,24 @@
+uuid: 9f11f335-6b0d-467d-8fa5-9bd59fc3a5f2
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: content_alias
+label: 'Content alias'
+type: 'canonical_entities:node'
+pattern: '[node:title]'
+selection_criteria:
+  8a0e2d04-e373-4639-8b80-2c451d438dbb:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 8a0e2d04-e373-4639-8b80-2c451d438dbb
+    context_mapping:
+      node: node
+    bundles:
+      final_report_ixp: final_report_ixp
+      ixp_engagement: ixp_engagement
+      progress_report: progress_report
+selection_logic: and
+weight: -5
+relationships: {  }

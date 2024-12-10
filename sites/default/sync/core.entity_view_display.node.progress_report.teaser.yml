@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.progress_report.field_assigned_tasks
     - field.field.node.progress_report.field_ixp_case
+    - field.field.node.progress_report.field_ixp_links
     - field.field.node.progress_report.field_mentor_available
     - field.field.node.progress_report.field_tasks_skills
     - node.type.progress_report
@@ -24,5 +25,6 @@ content:
 hidden:
   field_assigned_tasks: true
   field_ixp_case: true
+  field_ixp_links: true
   field_mentor_available: true
   field_tasks_skills: true

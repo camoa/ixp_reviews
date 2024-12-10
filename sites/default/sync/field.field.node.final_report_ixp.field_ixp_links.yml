@@ -1,0 +1,53 @@
+uuid: b4f7ec15-9c85-4b7e-86f6-a14ced845b2b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ixp_links
+    - node.type.final_report_ixp
+  module:
+    - custom_field
+id: node.final_report_ixp.field_ixp_links
+field_name: field_ixp_links
+entity_type: node
+bundle: final_report_ixp
+label: 'IXP Links'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  field_settings:
+    value:
+      type: url
+      weight: 0
+      check_empty: false
+      widget_settings:
+        label: Value
+        settings:
+          description: ''
+          description_display: after
+          size: 60
+          placeholder: ''
+          required: false
+          link_type: 16
+          field_prefix: default
+          field_prefix_custom: ''
+    link_description:
+      type: text
+      weight: 0
+      check_empty: false
+      widget_settings:
+        label: 'Link description'
+        settings:
+          description: ''
+          description_display: after
+          size: 100
+          placeholder: ''
+          maxlength: 255
+          maxlength_js: false
+          prefix: ''
+          suffix: ''
+          required: false
+field_type: custom

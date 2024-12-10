@@ -5,10 +5,12 @@ dependencies:
   config:
     - field.field.node.progress_report.field_assigned_tasks
     - field.field.node.progress_report.field_ixp_case
+    - field.field.node.progress_report.field_ixp_links
     - field.field.node.progress_report.field_mentor_available
     - field.field.node.progress_report.field_tasks_skills
     - node.type.progress_report
   module:
+    - custom_field
     - text
     - user
 id: node.progress_report.default
@@ -21,7 +23,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 104
+    weight: 4
     region: content
   field_ixp_case:
     type: entity_reference_label
@@ -29,7 +31,15 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 102
+    weight: 1
+    region: content
+  field_ixp_links:
+    type: custom_formatter
+    label: above
+    settings:
+      fields: {  }
+    third_party_settings: {  }
+    weight: 5
     region: content
   field_mentor_available:
     type: boolean
@@ -39,7 +49,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 103
+    weight: 2
     region: content
   field_tasks_skills:
     type: boolean
@@ -49,11 +59,11 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 105
+    weight: 3
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
 hidden: {  }

@@ -1,0 +1,53 @@
+uuid: 8a109f44-5c85-40a5-acf7-511ef41a3efc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ixp_links
+    - node.type.progress_report
+  module:
+    - custom_field
+id: node.progress_report.field_ixp_links
+field_name: field_ixp_links
+entity_type: node
+bundle: progress_report
+label: 'IXP Links'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  field_settings:
+    value:
+      type: url
+      weight: 0
+      check_empty: false
+      widget_settings:
+        label: Value
+        settings:
+          description: ''
+          description_display: after
+          size: 60
+          placeholder: ''
+          required: false
+          link_type: 16
+          field_prefix: default
+          field_prefix_custom: ''
+    link_description:
+      type: text
+      weight: 0
+      check_empty: false
+      widget_settings:
+        label: 'Link description'
+        settings:
+          description: ''
+          description_display: after
+          size: 100
+          placeholder: ''
+          maxlength: 255
+          maxlength_js: false
+          prefix: ''
+          suffix: ''
+          required: false
+field_type: custom
